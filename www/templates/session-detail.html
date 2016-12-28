@@ -1,0 +1,20 @@
+<ion-view  view-title="{{session.title}}">
+  <ion-content class="padding has-header">
+    <h3>{{session.title}}</h3>
+    <h4>{{session.speaker}}</h4>
+    <h4> Time: {{session.sessiontype}}</h4>
+    <p>{{session.description}}</p>
+
+    <button ng-click="addToSchedule(session.id)">Add to My Schedule</button>
+    <button ui-sref="app.rateSession({id:session.id})">Rate this Session</button>
+    <div class="alert alert-success" ng-if="addedToSchedule">
+      <strong>Success!</strong> Added to your schedule.
+    </div>
+    <div class=" padding alert alert-info" ng-if="alreadyInSchedule">
+      <strong>Oops!</strong> Already in your schedule.
+    </div>
+    <div class=" padding alert alert-danger" ng-if="hasBreakoutSession">
+      <strong>Failure!</strong> You already have something scheduled for this breakout session.
+    </div>
+  </ion-content>
+</ion-view>

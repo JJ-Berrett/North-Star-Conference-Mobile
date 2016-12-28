@@ -1,0 +1,17 @@
+<ion-view view-title="My Schedule">
+  <ion-content class="padding has-header">
+
+    <div class="alert alert-warning" ng-if="noSchedule">
+      <strong>No Schedule!</strong> Head on over to the Breakouts Page to plan out your schedule!
+    </div>
+
+    <div ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
+
+      <h4>{{session.title}}</h4>
+      <h6 ng-click="removeFromSchedule({id:session.id})">Remove</h6>
+      <h4>{{session.speaker}} </h4>
+      <h5>{{session.sessiontype}}</h5>
+    </div>
+
+  </ion-content>
+</ion-view>
