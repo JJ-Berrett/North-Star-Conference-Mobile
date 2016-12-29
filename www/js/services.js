@@ -48,7 +48,6 @@ angular.module('services', [])
     };
 
     this.getSchedule = function () {
-      console.log("Getting Schedule");
       if (schedule.length > 0) {
         return schedule
       }
@@ -58,7 +57,6 @@ angular.module('services', [])
     };
 
     this.submitReview = function (session) {
-      console.log(" I am in the Session Service", session);
       return $http.post('https://northstarconferenceadmin.herokuapp.com/api/review', session)
         .then(function (res) {
           console.log(res);

@@ -6409,10 +6409,11 @@ button.item.item-button-right {
 .item-divider-ios {
   padding-top: 26px;
   text-transform: uppercase;
-  font-weight: 300;
-  font-size: 13px;
-  background-color: #efeff4;
-  color: #555; }
+  font-weight: 500;
+  font-size: 16px;
+  /*background-color: #efeff4;*/
+  /*color: #555;*/
+}
 
 .platform-android .item-divider-platform,
 .item-divider-android {

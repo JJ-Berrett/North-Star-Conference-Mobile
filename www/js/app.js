@@ -68,6 +68,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services'])
         }
       }
     })
+    .state('tab.rateSession', {
+      url: '/rateSession/:id',
+      views: {
+        'sessions-tab': {
+          templateUrl: 'templates/rate-session.html',
+          controller: 'ratingCtrl'
+        }
+      }
+    })
 
   .state('tab.schedule', {
     url: '/schedule',
@@ -78,6 +87,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services'])
       }
     }
   });
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');

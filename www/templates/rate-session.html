@@ -1,0 +1,33 @@
+<ion-view view-title="Rate Session">
+    <ion-content>
+        <div class="list">
+            <label class="item positive">{{session.title}}</label>
+            <label class="item positive">{{session.speaker}}</label>
+            <label class="item item-input item-stacked-label">
+                <span class="positive input-label">Full Name</span>
+                <input type="text" placeholder="Not Required" ng-model="session.userName">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="positive input-label">Email</span>
+                <input type="text" placeholder="Not Required" ng-model="session.userEmail">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="positive input-label">What did you like?</span>
+                <textarea placeholder="I really liked how..." ng-model="session.likeFeedback"></textarea>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="positive input-label">What did not you like?</span>
+                <textarea placeholder="I didn't care for..." ng-model="session.dislikeFeedback"></textarea>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="positive input-label">Any other comments?</span>
+                <textarea placeholder="I really wish that..." ng-model="session.generalFeedback"></textarea>
+            </label>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-positive" ng-click="submitReview(session)" ui-sref="tab.sessions">Submit</button>
+        </div>
+
+
+    </ion-content>
+</ion-view>

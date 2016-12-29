@@ -1,1 +1,27 @@
-/* Empty. Add your own CSS if you like */
+.grey-text {
+    color: #34383B;
+}
+
+.grey-text-session {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #34383B;
+}
+
+.grey-text-italic {
+    color: #7B868C;
+    font-style: italic;
+}
+
+.session-detail-speaker{
+    color: #7B868C;
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.session-detail-title {
+    margin-top: 5px;
+    font-size: 20px;
+
+}
