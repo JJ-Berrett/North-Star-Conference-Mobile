@@ -1,8 +1,8 @@
 <ion-view view-title="Rate Session">
     <ion-content>
         <div class="list">
-            <label class="item positive">{{session.title}}</label>
-            <label class="item positive">{{session.speaker}}</label>
+            <label class="item positive item-text-wrap" style="font-weight: bold">{{session.title}}</label>
+            <label class="item positive" style="font-weight: bold">{{session.speaker}}</label>
             <label class="item item-input item-stacked-label">
                 <span class="positive input-label">Full Name</span>
                 <input type="text" placeholder="Not Required" ng-model="session.userName">
@@ -25,7 +25,7 @@
             </label>
         </div>
         <div class="padding">
-            <button class="button button-block button-positive" ng-click="submitReview(session)" ui-sref="tab.sessions">Submit</button>
+            <button class="button button-block button-positive button-outline" ng-click="submitReview(session)" ui-sref="tab.sessions">Submit</button>
         </div>
 
 
