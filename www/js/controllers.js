@@ -1,34 +1,5 @@
 angular.module('controllers', [])
 
-  .controller('DashCtrl', function ($scope) {
-  })
-
-  .controller('ChatsCtrl', function ($scope, Chats) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
-    $scope.chats = Chats.all();
-    $scope.remove = function (chat) {
-      Chats.remove(chat);
-    };
-  })
-
-  .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
-  })
-
-  .controller('AccountCtrl', function ($scope) {
-    $scope.settings = {
-      enableFriends: true
-    }
-
-  })
-
   .controller('SessionCtrl', function ($scope, sessionsSrvc) {
 
     var sessionLength = 0;
@@ -63,13 +34,13 @@ angular.module('controllers', [])
     $scope.addToSchedule = function (id) {
       var status = sessionsSrvc.addToSchedule(id);
       if (status.sessionId) {
-        ionicToast.show('Added to your schedule!.', 'bottom', false, 2500);
+        ionicToast.show('Added to your schedule!', 'bottom', false, 2500);
       }
       if (status.sessionType) {
-        ionicToast.show('You already have something for this session.', 'bottom', false, 2500);
+        ionicToast.show('You already have something for this session', 'bottom', false, 2500);
       }
       if (!status.sessionId && !status.sessionType) {
-        ionicToast.show('Already in your schedule.', 'bottom', false, 2500);
+        ionicToast.show('Already in your schedule', 'bottom', false, 2500);
       }
     }
   })
