@@ -1,6 +1,6 @@
 {
   "name": "northStar",
-  "app_id": "",
+  "app_id": "ec05e39b",
   "gulpStartupTasks": [
     "sass",
     "watch"

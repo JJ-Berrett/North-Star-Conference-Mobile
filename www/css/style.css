@@ -13,7 +13,7 @@
     font-style: italic;
 }
 
-.session-detail-speaker{
+.session-detail-speaker {
     color: #7B868C;
     font-style: italic;
     margin-top: 5px;
@@ -26,6 +26,35 @@
 
 }
 
-.div{
-    white-space: pre;
+.home-container {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    height: 80%;
+}
+
+.home-container > .row {
+    -webkit-flex: 1.5;
+}
+
+.header {
+    -webkit-flex: 1 !important;
+    -webkit-align-items: center;
+    /*background-image: url("../img/logo-alpha.png");*/
+    /*background-repeat: repeat;*/
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+}
+
+.icon-row {
+    -webkit-align-items: center;
+}
+
+.detail-button-container {
+    display: -webkit-flex;
+    justify-content: center;
+    /*-webkit-flex-direction: row;*/
+}
+
+.detail-button {
+    margin-right: 10px;
 }

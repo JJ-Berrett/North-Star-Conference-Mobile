@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'services'])
+angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -86,7 +86,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services'])
         controller: 'scheduleCtrl'
       }
     }
-  });
+  })
+    .state('tab.other', {
+      url:'/other',
+      views: {
+        'other-tab': {
+          templateUrl: 'templates/other.html',
+          controller: 'otherCtrl'
+        }
+      }
+    })
+  ;
 
 
 

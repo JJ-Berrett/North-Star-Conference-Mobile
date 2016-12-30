@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('controllers', [])
 
   .controller('DashCtrl', function ($scope) {
   })
@@ -43,32 +43,33 @@ angular.module('starter.controllers', [])
           sessionLength = sessions.length;
         })
         .then(function () {
-          for(var i = 0; i < sessionLength; i++) {
+          for (var i = 0; i < sessionLength; i++) {
             firstSession = sessions[i].sessiontype;
 
-            if(!$scope.sessions[firstSession]){
+            if (!$scope.sessions[firstSession]) {
               $scope.sessions[firstSession] = [];
             }
             $scope.sessions[firstSession].push(sessions[i]);
           }
         });
     }
+
     getAllSessions()
   })
 
-  .controller('SessionDetailCtrl', function ($scope, sessionsSrvc, $stateParams) {
+  .controller('SessionDetailCtrl', function ($scope, sessionsSrvc, $stateParams, ionicToast) {
     $scope.session = sessionsSrvc.getSession($stateParams.id);
 
     $scope.addToSchedule = function (id) {
       var status = sessionsSrvc.addToSchedule(id);
       if (status.sessionId) {
-        $scope.addedToSchedule = true;
+        ionicToast.show('Added to your schedule!.', 'bottom', false, 2500);
       }
       if (status.sessionType) {
-        $scope.hasBreakoutSession = true;
+        ionicToast.show('You already have something for this session.', 'bottom', false, 2500);
       }
       if (!status.sessionId && !status.sessionType) {
-        $scope.alreadyInSchedule = true;
+        ionicToast.show('Already in your schedule.', 'bottom', false, 2500);
       }
     }
   })
@@ -114,6 +115,10 @@ angular.module('starter.controllers', [])
         sessionsSrvc.submitReview(review)
       }
     };
+  })
+
+  .controller('otherCtrl', function ($scope) {
+    $scope.test = 'cat';
   });
 
 

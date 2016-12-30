@@ -1,28 +1,26 @@
-<ion-view  view-title="{{session.title}}">
-  <ion-content class="padding has-header">
-    <div class="card">
-      <div class="padding">
-        <h4 class="grey-text-session text-right">{{session.sessiontype}}</h4>
-        <h3 class="positive ">{{session.title}}</h3>
-        <div class="session-detail-speaker">{{session.speaker}}</div>
-        <p class="grey-text">{{session.description}}</p>
-        <div class="text-center">
-          <button class=" button button-small button-outline button-positive" ng-click="addToSchedule(session.id)">Add to My Schedule</button>
-          <button class=" button button-small button-outline button-positive" ui-sref="tab.rateSession({id:session.id})">Rate this Session</button>
+<ion-view view-title="{{session.title}}">
+    <ion-content class="padding has-header">
+        <div class="card">
+            <div class="padding">
+                <h4 class="grey-text-session text-right">{{session.sessiontype}}</h4>
+                <h3 class="positive ">{{session.title}}</h3>
+                <div class="session-detail-speaker">{{session.speaker}}</div>
+                <p class="grey-text">{{session.description}}</p>
+                <div class="detail-button-container ">
+                    <div class="text-center">
+                        <button class=" button button-small button-positive button-outline detail-button"
+                                ng-click="addToSchedule(session.id)"><i class="icon ion-plus-round"></i></button>
+                        <div class="detail-button positive">Add to Schedule</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="button button-small button-positive button-outline detail-button"
+                                ui-sref="tab.rateSession({id:session.id})"><i class="icon ion-ios-star"></i>
+                        </button>
+                        <div class="detail-button positive">Rate Session</div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
-    </div>
-
-
-
-    <div class="alert alert-success" ng-if="addedToSchedule">
-      <strong>Success!</strong> Added to your schedule.
-    </div>
-    <div class=" padding alert alert-info" ng-if="alreadyInSchedule">
-      <strong>Oops!</strong> Already in your schedule.
-    </div>
-    <div class=" padding alert alert-danger" ng-if="hasBreakoutSession">
-      <strong>Failure!</strong> You already have something scheduled for this breakout session.
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-view>
