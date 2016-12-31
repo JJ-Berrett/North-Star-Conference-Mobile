@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "northStar: An Ionic project",
   "dependencies": {
+    "@ionic/cloud": "^0.14.1",
     "@ionic/cloud-angular": "^0.8.0",
     "bluebird": "^3.4.7",
     "gulp": "^3.5.6",

@@ -8,6 +8,7 @@
             <input type="text" placeholder="Search" ng-model="searchText">
           </label>
         </div>
+        <div class="padding text-center" ng-if="loading">Loading sessions please wait...</div>
       <div class="item positive item-divider-ios" ng-repeat-start="(sessionType, sessions) in sessions">
         {{sessionType}}
         <ion-nav-view name="singleSession-tab"></ion-nav-view>
