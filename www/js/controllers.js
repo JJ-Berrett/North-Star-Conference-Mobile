@@ -26,14 +26,16 @@ angular.module('controllers', ['ionic.cloud'])
     $scope.sessions = {};
 
     function getAllSessions() {
-      ionicToast.show('Loading Sessions, please wait...', 'middle', false, 1500);
+      $scope.loading = true;
       sessionsSrvc.getSessions()
-        .then(function (result) {
+        .then(function (res) {
+          sessions = res.data;
+          sessionsSrvc.setSessions(sessions);
+          return sessions;
+        })
+        .then(function(result){
           sessions = result;
           sessionLength = sessions.length;
-
-        })
-        .then(function () {
           for (var i = 0; i < sessionLength; i++) {
             firstSession = sessions[i].sessiontype;
 
@@ -42,7 +44,8 @@ angular.module('controllers', ['ionic.cloud'])
             }
             $scope.sessions[firstSession].push(sessions[i]);
           }
-        });
+          $scope.loading = false;
+        })
     }
 
     getAllSessions()
@@ -69,8 +72,8 @@ angular.module('controllers', ['ionic.cloud'])
       var message = 'My Schedule \n \n';
       schedule = sessionsSrvc.getSchedule();
       if (schedule) {
-        for(var i = 0; i < schedule.length; i++){
-          message = message.concat("Breakout " + (i + 1) + ": "  + schedule[i].title + "\n \n");
+        for (var i = 0; i < schedule.length; i++) {
+          message = message.concat("Breakout " + (i + 1) + ": " + schedule[i].title + "\n \n");
         }
         var options = {
           replaceLineBreaks: false, // true to replace \n by a new line, false by default
@@ -100,7 +103,6 @@ angular.module('controllers', ['ionic.cloud'])
     }
 
     $scope.removeFromSchedule = function (id) {
-      console.log("Removing Session");
       sessionsSrvc.removeFromSchedule(id);
       getSchedule();
     };
@@ -132,7 +134,7 @@ angular.module('controllers', ['ionic.cloud'])
   })
 
   .controller('otherCtrl', function ($scope) {
-    $scope.test = 'cat';
+
   });
 
 

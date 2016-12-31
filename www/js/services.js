@@ -6,10 +6,10 @@ angular.module('services', [])
 
     this.getSessions = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions')
-        .then(function (res) {
-          sessions = res.data;
-          return sessions;
-        });
+    };
+
+    this.setSessions = function (_sessions) {
+      sessions = _sessions;
     };
 
     this.getSession = function (id) {
@@ -32,7 +32,6 @@ angular.module('services', [])
         return session.sessiontype === scheduledSession.sessiontype
       });
 
-      console.log(sessionId);
 
       if (!sessionId && !sessionType) {
         response.sessionId = true;
@@ -59,7 +58,6 @@ angular.module('services', [])
     this.submitReview = function (session) {
       return $http.post('https://northstarconferenceadmin.herokuapp.com/api/review', session)
         .then(function (res) {
-          console.log(res);
           return res;
         })
     };
@@ -69,8 +67,6 @@ angular.module('services', [])
     };
 
     function removeSessionFromSchedule(array, id, sessionId) {
-      console.log(array);
-      console.log(sessionId);
       var i = array.length;
       while (i--) {
         if (array[i]

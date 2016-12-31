@@ -112,6 +112,15 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
         }
       }
     })
+    .state('tab.map', {
+      url:'/other/map',
+      views: {
+        'other-tab': {
+          templateUrl: 'templates/map.html',
+          controller: 'otherCtrl'
+        }
+      }
+    })
   ;
 
 
