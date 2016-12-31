@@ -18,7 +18,7 @@ angular.module('controllers', ['ionic.cloud'])
     });
   })
 
-  .controller('SessionCtrl', function ($scope, sessionsSrvc) {
+  .controller('SessionCtrl', function ($scope, sessionsSrvc, ionicToast) {
 
     var sessionLength = 0;
     var firstSession;
@@ -26,10 +26,12 @@ angular.module('controllers', ['ionic.cloud'])
     $scope.sessions = {};
 
     function getAllSessions() {
+      ionicToast.show('Loading Sessions, please wait...', 'middle', false, 1500);
       sessionsSrvc.getSessions()
         .then(function (result) {
           sessions = result;
           sessionLength = sessions.length;
+
         })
         .then(function () {
           for (var i = 0; i < sessionLength; i++) {
@@ -81,7 +83,7 @@ angular.module('controllers', ['ionic.cloud'])
         sms.send(number, message, options);
       }
       else {
-        ionicToast.show('Nothing in your schedule, please add before sharing', 'bottom', false, 2500);
+        ionicToast.show('Nothing in your schedule, please add before sharing', 'middle', false, 2500);
       }
     };
 
