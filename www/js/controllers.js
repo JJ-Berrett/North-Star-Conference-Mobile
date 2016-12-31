@@ -1,4 +1,22 @@
-angular.module('controllers', [])
+angular.module('controllers', ['ionic.cloud'])
+
+  .controller('HomeCtrl', function ($scope, $ionicPush) {
+    $ionicPush.register()
+      .then(function (t) {
+        return $ionicPush.saveToken(t, true);
+      })
+      .then(function (t) {
+        console.log('Token saved:', t.token);
+      })
+      .catch(function (err) {
+        console.log('My Error ' + JSON.stringify(err))
+      });
+
+    $scope.$on('cloud:push:notification', function (event, data) {
+      var msg = data.message;
+      alert(msg.title + ': ' + msg.text);
+    });
+  })
 
   .controller('SessionCtrl', function ($scope, sessionsSrvc) {
 
@@ -34,17 +52,39 @@ angular.module('controllers', [])
     $scope.addToSchedule = function (id) {
       var status = sessionsSrvc.addToSchedule(id);
       if (status.sessionId) {
-        ionicToast.show('Added to your schedule!', 'bottom', false, 2500);
+        ionicToast.show('Added to your schedule!.', 'bottom', false, 2500);
       }
       if (status.sessionType) {
-        ionicToast.show('You already have something for this session', 'bottom', false, 2500);
+        ionicToast.show('You already have something for this session.', 'bottom', false, 2500);
       }
       if (!status.sessionId && !status.sessionType) {
-        ionicToast.show('Already in your schedule', 'bottom', false, 2500);
+        ionicToast.show('Already in your schedule.', 'bottom', false, 2500);
       }
     }
   })
-  .controller('scheduleCtrl', function ($scope, sessionsSrvc) {
+  .controller('scheduleCtrl', function ($scope, sessionsSrvc, ionicToast) {
+    $scope.sendSms = function () {
+      var message = 'My Schedule \n \n';
+      schedule = sessionsSrvc.getSchedule();
+      if (schedule) {
+        for(var i = 0; i < schedule.length; i++){
+          message = message.concat("Breakout " + (i + 1) + ": "  + schedule[i].title + "\n \n");
+        }
+        var options = {
+          replaceLineBreaks: false, // true to replace \n by a new line, false by default
+          android: {
+            intent: 'INTENT'  // send SMS with the native android SMS messaging
+            //intent: '' // send SMS without open any other app
+          }
+        };
+        var number = '';
+        sms.send(number, message, options);
+      }
+      else {
+        ionicToast.show('Nothing in your schedule, please add before sharing', 'bottom', false, 2500);
+      }
+    };
+
 
     function getSchedule() {
       var scheduledSessions = sessionsSrvc.getSchedule();
@@ -67,6 +107,7 @@ angular.module('controllers', [])
       getSchedule()
     });
   })
+
   .controller('ratingCtrl', function ($scope, sessionsSrvc, $stateParams) {
     $scope.session = sessionsSrvc.getSession($stateParams.id);
     $scope.submitReview = function (session) {

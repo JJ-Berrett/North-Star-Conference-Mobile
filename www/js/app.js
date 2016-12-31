@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast'])
+angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'ionic-toast'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,23 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
+
+    $ionicCloudProvider.init({
+      "core": {
+        "app_id": "ec05e39b"
+      },
+      "push": {
+        "sender_id": "1095842076318",
+        "pluginConfig": {
+          "ios": {
+            "badge": true,
+            "sound": true
+          }
+        }
+      }
+    });
+
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -40,12 +56,12 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.home', {
+    url: '/home',
     views: {
       'home-tab': {
         templateUrl: 'templates/home.html',
-        controller: 'DashCtrl'
+        controller: 'HomeCtrl'
       }
     }
   })
@@ -101,6 +117,6 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast'])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/home');
 
 });
