@@ -17,7 +17,21 @@
     color: #7B868C;
     font-style: italic;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.detail-container{
+    /*display: -webkit-flex;*/
+}
+.right-detail-section{
+    /*-webkit-align-items: flex-start;*/
+}
+.left-detail-section{
+    /*-webkit-align-items: flex-end;*/
+}
+.session-detail-data {
+    color: #7B868C;
+    margin-bottom: 5px;
 }
 
 .session-detail-title {
@@ -64,11 +78,6 @@
     justify-content: flex-end;
 }
 
-.schedule-button {
-    width: 24px !important;
-    height: 24px !important;
-}
-
 .transparent {
     background: transparent !important;
 }
@@ -101,4 +110,50 @@
         background-color: #000;
         opacity: 0;
     }
+}
+
+/*For Zooming on the MAP*/
+
+.zoom-pane {
+    width: 100%;
+    height: 100%;
+}
+
+
+.zoom-pane .scroll {
+    min-height: 100%;
+    /* Vertical align */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.zoom-pane img {
+    width: 100%;
+    vertical-align: middle;
 }

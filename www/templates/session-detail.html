@@ -2,24 +2,33 @@
     <ion-content class="padding has-header">
         <div class="card">
             <div class="padding">
-                <h4 class="grey-text-session text-right">{{session.sessiontype}}</h4>
-                <h3 class="positive ">{{session.title}}</h3>
-                <div class="session-detail-speaker">{{session.speaker}}</div>
-                <p class="grey-text">{{session.description}}</p>
+                <div class="detail-container">
+                    <div class="right-detail-section">
+                        <h4 class="grey-text-session text-right">{{session.sessiontype}}</h4>
+                        <h6 class="grey-text-session text-right">{{session.sessiontime}}</h6>
+                    </div>
+                    <div class="left-detail-section">
+                        <h3 class="positive ">{{session.title}}</h3>
+                        <div class="session-detail-speaker">{{session.speaker}}</div>
+                        <div class="session-detail-data">#{{session.demographic}}</div>
+                        <div  ng-click="openModal()" class=" positive" ui-sref="tab.other">Room: {{session.room}}</div>
+                        <p class="padding-top grey-text">{{session.description}}</p>
+                    </div>
+                </div>
                 <div class="detail-button-container ">
                     <div class="text-center">
                         <button class=" button button-small button-positive button-outline detail-button"
-                                ng-click="addToSchedule(session.id)"><i class="icon ion-plus-round"></i></button>
+                                ng-click="addToSchedule(session.id)"><i class="icon ion-plus-round"></i>
+                        </button>
                         <div class="detail-button positive">Add to Schedule</div>
                     </div>
                     <div class="text-center">
                         <button class="button button-small button-positive button-outline detail-button"
-                                ui-sref="tab.rateSession({id:session.id})"><i class="icon ion-ios-star"></i>
+                                ui-sref="tab.rateSession({id:session.id})"><i class="icon ion-ios-mic"></i>
                         </button>
-                        <div class="detail-button positive">Rate Session</div>
+                        <div class="detail-button positive">Provide Feedback</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </ion-content>

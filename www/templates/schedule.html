@@ -1,20 +1,18 @@
 <ion-view view-title="My Schedule">
   <ion-content class="has-header">
-
-    <div class="padding-top text-center">
-        <button ng-click="sendSms()" class = "button button-small "><i class="icon ion-ios-upload-outline"></i></button>
-        <div class="positive" style="font-size: 10px;">Share</div>
-    </div>
-
     <ion-list>
-      <ion-item class="padding-top item-text-wrap card icon-right" ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
+        <div class=" text-center">
+            <button ng-click="sendSms()"  class="button button-positive button-clear"><i class="icon ion-ios-upload-outline"></i></button>
+            <div class="positive" style="font-size: 10px;">Share With Friends</div>
+        </div>
+      <ion-item class="padding item-text-wrap card icon-right" ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
           <h2 class="positive">{{session.title}}</h2>
           <h3 class="grey-text-italic">{{session.speaker}}</h3>
-          <h6 class="grey-text-session">{{session.sessiontype}}</h6>
+          <h6 class="grey-text-session">{{session.sessiontype}} - <span style=" text-transform:none;">Room: {{session.room}}</span></h6>
           <div class="schedule-button-container ">
               <!--buttons text-right-->
-           <button class="button button-clear" ng-click="removeFromSchedule({id:session.id})"><i class="schedule-button positive icon ion-trash-b icon-accessory"></i> </button>
-              <button class="button button-clear" ui-sref='tab.session-detail({id:session.id})'><i class="schedule-button padding-left positive icon ion-ios-arrow-thin-right"></i></button>
+              <button class="button button-clear" ng-click="removeFromSchedule({id:session.id})"><i class=" positive icon ion-ios-trash-outline"></i> </button>
+              <button class="button button-clear" ui-sref='tab.session-detail({id:session.id})'><i class=" padding-left positive icon ion-ios-arrow-thin-right"></i></button>
           </div>
 
         <ion-nav-view name="singleSession-tab"></ion-nav-view>

@@ -1,8 +1,13 @@
-<ion-view view-title="Map">
-    <ion-content class="padding">
-        <div class="item item-image">
-            <img src="img/map.png">
-        </div>
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">View Image</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content class="padding" scroll="false">
+
+        <ion-scroll zooming="true" direction="xy" delegate-handle="zoom-pane" class="zoom-pane" min-zoom="1" scrollbar-x="false" scrollbar-y="false">
+            <img ng-src="{{imgUrl}}">
+        </ion-scroll>
 
     </ion-content>
-</ion-view>
+</ion-modal-view>

@@ -15,7 +15,7 @@
             <div class = "row icon-row">
 
                 <div class = "col text-center">
-                    <a href="#" onclick="window.open('https://www.eventbrite.com/e/2017-north-star-international-conference-tickets-23819363357?aff=es2', '_system', 'location=no'); return false;">
+                    <a href="#" onclick="window.open('https://www.eventbrite.com/e/2017-north-star-international-conference-tickets-23819363357?aff=es2', '_blank', 'location=no'); return false;">
                     <button class = "button button-large button-positive"><i class="icon ion-ios-cart-outline"></i></button>
                     </a>
                     <div class="positive">Purchase Audio</div>
@@ -23,8 +23,8 @@
 
 
                 <div class = "col text-center">
-                    <button class = "button button-large button-positive"><i class="icon ion-mic-b"></i></button>
-                    <div class="positive">Comments</div>
+                    <button class = "button button-large button-positive" ui-sref="tab.session-questions"><i class="icon ion-mic-b"></i></button>
+                    <div class="positive">Ask A Question</div>
                 </div>
 
             </div>
@@ -33,7 +33,7 @@
             <div class = "row icon-row">
 
                 <div class = "col text-center">
-                    <a href="#" onclick="window.open('http://conference.northstarlds.org', '_system', 'location=no'); return false;">
+                    <a href="#" onclick="window.open('http://conference.northstarlds.org', '_blank', 'location=no'); return false;">
                     <button class = "button button-large button-positive"><i class="icon ion-compass"></i></button>
                     </a>
                     <div class="positive">Website</div>
@@ -41,7 +41,7 @@
 
 
                 <div class = "col text-center">
-                    <button class = "button button-large button-positive" ui-sref="tab.map"><i class="icon ion-ios-navigate-outline" ></i></button>
+                    <button class = "button button-large button-positive" ng-click="openModal()"><i class="icon ion-ios-navigate-outline" ></i></button>
                     <div class="positive">Map</div>
                 </div>
 

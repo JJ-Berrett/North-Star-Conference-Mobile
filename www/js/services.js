@@ -1,26 +1,31 @@
 angular.module('services', [])
-  .service("sessionsSrvc", function ($http) {
+  .service("sessionsSrvc", function ($http, $localStorage) {
 
-    var sessions = [];
-    var schedule = [];
+    if(!$localStorage.sessions){
+      $localStorage.sessions = [];
+    }
+    if(!$localStorage.schedule){
+      $localStorage.schedule = [];
+    }
+    var schedule = $localStorage.schedule;
 
     this.getSessions = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions')
     };
 
     this.setSessions = function (_sessions) {
-      sessions = _sessions;
+      $localStorage.sessions = _sessions;
     };
 
     this.getSession = function (id) {
-      return sessions.find(function (session) {
+      return $localStorage.sessions.find(function (session) {
         return session.id === parseInt(id);
       })
     };
 
     this.addToSchedule = function (id) {
       var response = {};
-      var scheduledSession = sessions.find(function (session) {
+      var scheduledSession = $localStorage.sessions.find(function (session) {
         return session.id === parseInt(id);
       });
 
@@ -36,6 +41,7 @@ angular.module('services', [])
       if (!sessionId && !sessionType) {
         response.sessionId = true;
         schedule.push(scheduledSession);
+        $localStorage.schedule = schedule;
       }
       else if (sessionId && sessionType) {
         response.sessionId = false;
@@ -62,19 +68,28 @@ angular.module('services', [])
         })
     };
 
+		function removeSessionFromSchedule(array, id, sessionId) {
+			var i = array.length;
+			while (i--) {
+				if (array[i]
+					&& array[i].hasOwnProperty(id)
+					&& (arguments.length > 2 && array[i][id] === parseInt(sessionId.id))) {
+
+					array.splice(i, 1);
+				}
+			}
+		}
+
     this.removeFromSchedule = function (sessionId) {
-      removeSessionFromSchedule(schedule, "id", sessionId)
+      removeSessionFromSchedule(schedule, "id", sessionId);
+      $localStorage.schedule = schedule;
     };
 
-    function removeSessionFromSchedule(array, id, sessionId) {
-      var i = array.length;
-      while (i--) {
-        if (array[i]
-          && array[i].hasOwnProperty(id)
-          && (arguments.length > 2 && array[i][id] === parseInt(sessionId.id))) {
+		this.sendQuestion = function (question) {
+			return $http.post('https://northstarconferenceadmin.herokuapp.com/api/questions', question)
+				.then(function (res) {
+					return res;
+				})
+		}
 
-          array.splice(i, 1);
-        }
-      }
-    }
   });

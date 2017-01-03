@@ -1,0 +1,16 @@
+<ion-view view-title="Question ">
+    <ion-content>
+        <div class="padding">
+        <div class="list list-inset">
+            <label class="item item-text-wrap positive">Question for session: {{session.title}}</label>
+        <label class="item item-input">
+            <input type="text" placeholder="Question" ng-model="question">
+        </label>
+        </div>
+        <div class="text-center">
+            <button class=" button button-positive button-block" ng-click="sendQuestion(question)">Submit</button>
+        </div>
+        </div>
+
+    </ion-content>
+</ion-view>
