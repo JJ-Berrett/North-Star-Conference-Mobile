@@ -14,7 +14,7 @@
             </div>
         <div class="item positive item-divider-ios" ng-repeat-start="mappedSession in mappedSessions | orderBy: 'sessionType'">
             {{mappedSession.sessionType}} ({{mappedSession.sessionTime}})
-            <ion-nav-view name="singleSession-tab"></ion-nav-view>
+            <ion-nav-view name="other-tab"></ion-nav-view>
         </div>
         <div class="item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
              ui-sref='tab.question({id:session.id})'>
