@@ -25,7 +25,9 @@ angular.module('services', [])
 
     this.addToSchedule = function (id) {
       var response = {};
+      console.log(JSON.stringify($localStorage.sessions));
       var scheduledSession = $localStorage.sessions.find(function (session) {
+        console.log(JSON.stringify(session));
         return session.id === parseInt(id);
       });
 
@@ -86,6 +88,7 @@ angular.module('services', [])
     };
 
 		this.sendQuestion = function (question) {
+			console.log(question);
 			return $http.post('https://northstarconferenceadmin.herokuapp.com/api/questions', question)
 				.then(function (res) {
 					return res;

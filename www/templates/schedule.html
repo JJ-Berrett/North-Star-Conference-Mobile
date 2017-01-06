@@ -7,6 +7,7 @@
         </div>
       <ion-item class="padding item-text-wrap card icon-right" ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
           <h2 class="positive">{{session.title}}</h2>
+          <h3 class="positive">{{session.sessiontime}}</h3>
           <h3 class="grey-text-italic">{{session.speaker}}</h3>
           <h6 class="grey-text-session">{{session.sessiontype}} - <span style=" text-transform:none;">Room: {{session.room}}</span></h6>
           <div class="schedule-button-container ">

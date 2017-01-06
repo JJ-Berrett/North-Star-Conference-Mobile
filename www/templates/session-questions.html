@@ -13,16 +13,29 @@
                 <h4 class="positive">Select a Session to Ask Your Question</h4>
             </div>
             <div class="padding text-center" ng-if="loading">Loading sessions please wait...</div>
-            <div class="item positive item-divider-ios" ng-repeat-start="(sessionType, sessions) in sessions">
-                {{sessionType}}
+            <div class="item positive item-divider-ios" ng-repeat-start="session in sessions">
+                {{session.sessionType}} ({{session.sessionTime}})
                 <ion-nav-view name="singleSession-tab"></ion-nav-view>
             </div>
-            <div class="item item-text-wrap item-icon-right" ng-repeat="session in sessions | filter: searchText" ui-sref='tab.question({id:session.id})'>
+            <div class="item item-text-wrap item-icon-right" ng-repeat="session in session.sessions | filter: searchText" ui-sref='tab.question({id:session.id})'>
                 <h2 class="grey-text">{{session.title}}</h2>
                 <h4 class="session-detail-speaker">{{session.speaker}}</h4>
                 <i class="icon ion-chevron-right icon-accessory" ></i>
             </div>
             <div ng-repeat-end></div>
+
+        <!--<div class="item positive item-divider-ios" ng-repeat-start="session in sessions">-->
+            <!--{{session.sessionType}} ({{session.sessionTime}})-->
+            <!--<ion-nav-view name="singleSession-tab"></ion-nav-view>-->
+        <!--</div>-->
+        <!--<div class="item item-text-wrap item-icon-right" ng-repeat="session in session.sessions | filter: searchText"-->
+             <!--ui-sref='tab.session-detail({id:session.id})'>-->
+            <!--<h2 class="grey-text">{{session.title}}</h2>-->
+            <!--<h4 class="session-detail-speaker">{{session.speaker}}</h4>-->
+            <!--<h4 class="session-detail-speaker">#{{session.demographic}}</h4>-->
+            <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+        <!--</div>-->
+        <!--<div ng-repeat-end></div>-->
     </ion-list>
 </ion-content>
 </ion-view>

@@ -12,10 +12,10 @@ angular.module('controllers', ['ionic.cloud'])
 				console.log('My Error ' + JSON.stringify(err))
 			});
 
-		$scope.$on('cloud:push:notification', function (event, data) {
-			var msg = data.message;
-			alert(msg.title + ': ' + msg.text);
-		});
+		// $scope.$on('cloud:push:notification', function (event, data) {
+		// 	var msg = data.message;
+		// 	alert(msg.text);
+		// });
 	})
 
 	.controller('SessionCtrl', function ($scope, sessionsSrvc, ionicToast) {
@@ -34,19 +34,41 @@ angular.module('controllers', ['ionic.cloud'])
 					return sessions;
 				})
 				.then(function (result) {
+					var mappedSessions = [];
 					sessions = result;
-					sessionLength = sessions.length;
-					for (var i = 0; i < sessionLength; i++) {
-						sessionType = sessions[i].sessiontype;
 
-						if (!$scope.sessions[sessionType]) {
-							$scope.sessions[sessionType] = [];
+					//Create Mapped array with sessionType, SessionTime, then array of sessions
+					result.map(function (session) {
+						var isMapped = mappedSessions.find(function (mappedSession) {
+							return mappedSession.sessionType === session.sessiontype;
+            });
+
+						if(!isMapped){
+							mappedSessions.push({
+								sessionType: session.sessiontype,
+								sessionTime: session.sessiontime,
+								sessions: []
+							})
 						}
-						$scope.sessions[sessionType].push(sessions[i]);
-					}
+          });
+
+          //Add sessions to the session object in the mapped session.
+					result.map(function (session) {
+						var mappedSession = mappedSessions.find(function (mappedSession) {
+							return mappedSession.sessionTime === session.sessiontime;
+            });
+            if(mappedSession){
+            	mappedSession.sessions.push(session);
+						}
+          });
+					$scope.mappedSessions = mappedSessions;
 					$scope.loading = false;
 				})
 		}
+
+    function isInArray(value, array) {
+      return array.indexOf(value);
+    }
 
 		getAllSessions()
 	})
@@ -78,6 +100,7 @@ angular.module('controllers', ['ionic.cloud'])
 			$scope.imgUrl = "img/map.png"
 		}
 	})
+
 	.controller('scheduleCtrl', function ($scope, sessionsSrvc, ionicToast) {
 		$scope.sendSms = function () {
 			var message = 'My Schedule \n \n';
@@ -171,7 +194,9 @@ angular.module('controllers', ['ionic.cloud'])
 				};
 				sessionsSrvc.sendQuestion(Question);
 				ionicToast.show('Your question has been submitted', 'middle', false, 1500);
+				$scope.question = '';
 				$state.go('tab.other');
+
 			}
 		};
 	});

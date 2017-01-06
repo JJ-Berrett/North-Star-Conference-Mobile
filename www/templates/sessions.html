@@ -1,4 +1,4 @@
-<ion-view view-title="Sessions">
+<ion-view view-title="Sessions" cache-view="false">
     <ion-content class="has-header" delegate-handle="stickyScroll">
         <ion-list>
             <div id="search-bar">
@@ -10,11 +10,11 @@
                 </div>
                 <div class="padding text-center" ng-if="loading">Loading sessions please wait...</div>
 
-                <div class="item positive item-divider-ios" ng-repeat-start="(sessionType, sessions) in sessions">
-                    {{sessionType}}{{sessiontime}}
+                <div class="item positive item-divider-ios" ng-repeat-start="mappedSession in mappedSessions | orderBy: 'sessionType'">
+                    {{mappedSession.sessionType}} ({{mappedSession.sessionTime}})
                     <ion-nav-view name="singleSession-tab"></ion-nav-view>
                 </div>
-                <div class="item item-text-wrap item-icon-right" ng-repeat="session in sessions | filter: searchText"
+                <div class="item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
                      ui-sref='tab.session-detail({id:session.id})'>
                     <h2 class="grey-text">{{session.title}}</h2>
                     <h4 class="session-detail-speaker">{{session.speaker}}</h4>
