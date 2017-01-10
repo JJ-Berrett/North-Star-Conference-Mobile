@@ -1,0 +1,17 @@
+<ion-view view-title="{{mentor.name}}">
+  <ion-content class="padding has-header">
+    <div class="list card">
+      <div class="item item-body">
+        <img class="full-image" src="img/man.png">
+        <h2 class="positive">{{mentor.name}}</h2>
+        <p>
+          {{mentor.bio}}
+        </p>
+        <p class="text-center">
+          <button ng-click="sendSms(mentor.phonenumber)" class="button button-positive button-small ">Contact Me</button>
+        </p>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

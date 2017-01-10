@@ -7,6 +7,9 @@ angular.module('services', [])
     if(!$localStorage.schedule){
       $localStorage.schedule = [];
     }
+    if(!$localStorage.mentors){
+      $localStorage.mentors = [];
+    }
     var schedule = $localStorage.schedule;
 
     this.getSessions = function () {
@@ -15,6 +18,10 @@ angular.module('services', [])
 
     this.setSessions = function (_sessions) {
       $localStorage.sessions = _sessions;
+    };
+
+    this.setMentors = function (_mentors) {
+      $localStorage.mentors = _mentors
     };
 
     this.getSession = function (id) {
@@ -90,6 +97,16 @@ angular.module('services', [])
 				.then(function (res) {
 					return res;
 				})
-		}
+		};
+
+		this.getMentors = function () {
+      return $http.get('https://northstarconferenceadmin.herokuapp.com/api/mentors')
+    };
+
+    this.getMentor = function (id) {
+      return $localStorage.mentors.find(function (mentor) {
+        return mentor.id === parseInt(id);
+      })
+    };
 
   });

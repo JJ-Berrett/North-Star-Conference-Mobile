@@ -115,7 +115,25 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
 						controller: 'QuestionCtrl'
 					}
 				}
-			});
+			})
+      .state('tab.mentors', {
+        url: '/other/mentors',
+        views: {
+          'other-tab': {
+            templateUrl: 'templates/mentors.html',
+            controller: 'MentorCtrl'
+          }
+        }
+      })
+      .state('tab.mentor-detail', {
+        url: '/other/mentor-detail/:id',
+        views: {
+          'other-tab': {
+            templateUrl: 'templates/mentor-detail.html',
+            controller: 'MentorDetailCtrl'
+          }
+        }
+      })
 
 		$urlRouterProvider.otherwise('/tab/home');
 
