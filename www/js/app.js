@@ -11,8 +11,11 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
 		});
 	})
 
-	.config(function ($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
-		$ionicCloudProvider.init({
+	.config(function ($stateProvider, $urlRouterProvider, $ionicCloudProvider,  $ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
+
+    $ionicCloudProvider.init({
 			"core": {
 				"app_id": "ec05e39b"
 			},
