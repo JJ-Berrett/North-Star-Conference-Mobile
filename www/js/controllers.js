@@ -259,7 +259,12 @@ angular.module('controllers', ['ionic.cloud'])
       };
       sms.send(number, message, options);
       $state.go('tab.other')
-    };
+    }
+  })
+
+  .controller('SpeakerDetailCtrl', function ($scope, sessionsSrvc, $stateParams) {
+    console.log($stateParams.id);
+    $scope.speaker = sessionsSrvc.getSession($stateParams.id);
 
 
   });

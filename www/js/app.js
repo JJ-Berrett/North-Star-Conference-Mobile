@@ -70,6 +70,15 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
 					}
 				}
 			})
+      .state('tab.speaker-detail', {
+        url: '/speakerDetail/:id',
+        views: {
+          'sessions-tab': {
+            templateUrl: 'templates/speaker-detail.html',
+            controller: 'SpeakerDetailCtrl'
+          }
+        }
+      })
 
 			.state('tab.schedule', {
 				url: '/schedule',

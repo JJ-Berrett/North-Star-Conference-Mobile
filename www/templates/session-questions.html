@@ -19,7 +19,7 @@
         <div class="item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
              ui-sref='tab.question({id:session.id})'>
             <h2 class="grey-text">{{session.title}}</h2>
-            <h4 class="session-detail-speaker">{{session.speaker}}</h4>
+            <h4 class="session-detail-speaker">{{session.speakername}}</h4>
             <h4 class="session-detail-speaker">#{{session.demographic}}</h4>
             <i class="icon ion-chevron-right icon-accessory"></i>
         </div>
