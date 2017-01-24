@@ -1,33 +1,54 @@
 <ion-view view-title="Provide Feedback">
-    <ion-content>
-        <div class="list">
-            <label class="item positive item-text-wrap" style="font-weight: bold">{{session.title}}</label>
-            <label class="item positive" style="font-weight: bold">{{session.speakername}}</label>
-            <label class="item item-input item-stacked-label">
-                <span class="positive input-label">Full Name</span>
-                <input type="text" placeholder="Not Required" ng-model="session.userName">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="positive input-label">Email</span>
-                <input type="text" placeholder="Not Required" ng-model="session.userEmail">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="positive input-label">What did you like?</span>
-                <textarea placeholder="I really liked how..." ng-model="session.likeFeedback"></textarea>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="positive input-label">What could we have done better?</span>
-                <textarea placeholder="I fell that..." ng-model="session.dislikeFeedback"></textarea>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="positive input-label">Any other comments?</span>
-                <textarea placeholder="I really wish that..." ng-model="session.generalFeedback"></textarea>
-            </label>
-        </div>
-        <div class="padding">
-            <button class="button button-block button-positive button-outline" ng-click="submitReview(session)" ui-sref="tab.sessions">Submit</button>
-        </div>
+  <ion-content>
+    <div class="list">
+      <label class="item positive item-text-wrap" style="font-weight: bold">{{session.title}}</label>
+      <label class="item positive" style="font-weight: bold">{{session.speakername}}</label>
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">Full Name</span>
+        <input type="text" placeholder="Not Required" ng-model="session.userName">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">Email</span>
+        <input type="text" placeholder="Not Required" ng-model="session.userEmail">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">What did you like?</span>
+        <textarea placeholder="I really liked how..." ng-model="session.likeFeedback"></textarea>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">What could we have done better?</span>
+        <textarea placeholder="I feel that..." ng-model="session.dislikeFeedback"></textarea>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">Any other comments?</span>
+        <textarea placeholder="I really wish that..." ng-model="session.generalFeedback"></textarea>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="positive input-label">How would you rate this session?</span>
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            1-5
+          </div>
+          <select class="form-control" ng-model="session.rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+
+      </div>
+
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive button-outline" ng-click="submitReview(session)"
+              ui-sref="tab.sessions">Submit
+      </button>
+    </div>
 
 
-    </ion-content>
+  </ion-content>
 </ion-view>

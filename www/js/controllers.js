@@ -159,7 +159,8 @@ angular.module('controllers', ['ionic.cloud'])
           userEmail: session.userEmail || "",
           likeFeedback: session.likeFeedback || "",
           dislikeFeedback: session.dislikeFeedback || "",
-          generalFeedback: session.generalFeedback || ""
+          generalFeedback: session.generalFeedback || "",
+          rating : session.rating || ""
         };
 
         sessionsSrvc.submitReview(review)
@@ -244,9 +245,10 @@ angular.module('controllers', ['ionic.cloud'])
 
   .controller('MentorDetailCtrl', function ($scope, sessionsSrvc, $stateParams, ionicToast, $state) {
     console.log($stateParams.id);
-    var cat = sessionsSrvc.getMentor($stateParams.id);
-    console.log(cat);
     $scope.mentor = sessionsSrvc.getMentor($stateParams.id);
+    if($scope.mentor.photo == "" || $scope.mentor.photo == "TBD"){
+      $scope.mentor.photo = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
+    }
 
     $scope.sendSms = function (number) {
       var message = '';
@@ -265,6 +267,17 @@ angular.module('controllers', ['ionic.cloud'])
   .controller('SpeakerDetailCtrl', function ($scope, sessionsSrvc, $stateParams) {
     console.log($stateParams.id);
     $scope.speaker = sessionsSrvc.getSession($stateParams.id);
+
+    if($scope.speaker.speakerphoto == "" || $scope.speaker.speakerphoto == "TBD"){
+      $scope.speaker.speakerphoto = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
+    }
+
+    if($scope.speaker.speakername == "" || $scope.speaker.speakername == "TBD"){
+      $scope.speaker.speakername = "Speaker Not Yet Decided"
+    }
+    if($scope.speaker.speakerbio == "" || $scope.speaker.speakerbio == "TBD"){
+      $scope.speaker.speakerbio = "No Bio"
+    }
 
 
   });

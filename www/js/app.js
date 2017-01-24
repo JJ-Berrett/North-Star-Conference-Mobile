@@ -25,7 +25,10 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
 					"ios": {
 						"badge": true,
 						"sound": true
-					}
+					},
+          'android': {
+            'iconColor': '#343434'
+          }
 				}
 			}
 		});
