@@ -10,11 +10,11 @@
         </div>
         <div class="padding text-center" ng-if="loading">Loading sessions please wait...</div>
 
-        <div class="item positive item-divider-ios" ng-repeat-start="mappedMentor in mappedMentors | orderBy: 'dempgraphic'">
+        <div class="item positive item-divider-ios" ng-repeat-start="mappedMentor in mappedMentors | orderBy: 'demographic'">
           {{mappedMentor.demographic}}
           <ion-nav-view name="other-tab"></ion-nav-view>
         </div>
-        <div class="item item-text-wrap item-icon-right" ng-repeat="mentor in mappedMentor.mentors | filter: searchText"
+        <div class="item item-text-wrap item-icon-right" ng-repeat="mentor in mappedMentor.mentors | orderBy: 'name' | filter: searchText"
              ui-sref='tab.mentor-detail({id:mentor.id})'>
           <h2 class="grey-text">{{mentor.name}}</h2>
           <i class="icon ion-chevron-right icon-accessory"></i>
