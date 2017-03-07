@@ -12,7 +12,9 @@
             <div class="text-center">
                 <h4 class="positive">Select a Session to Ask Your Question</h4>
             </div>
-        <div class="item positive item-divider-ios" ng-repeat-start="mappedSession in mappedSessions | orderBy: 'sessionType'">
+      <div class="container spinner" ng-if="loading"><ion-spinner icon="cresent"></ion-spinner></div>
+
+      <div class="item positive item-divider-ios" ng-repeat-start="mappedSession in mappedSessions | orderBy: 'sessionType'">
             {{mappedSession.sessionType}} ({{mappedSession.sessionTime}})
             <ion-nav-view name="other-tab"></ion-nav-view>
         </div>

@@ -30825,7 +30825,7 @@ function $RootScopeProvider() {
 
 /**
  * @description
- * Private service to sanitize uris for links and img. Used by $compile and $sanitize.
+ * Private service to sanitize uris for links and images. Used by $compile and $sanitize.
  */
 function $$SanitizeUriProvider() {
   var aHrefSanitizationWhitelist = /^\s*(https?|ftp|mailto|tel|file):/,
@@ -62057,8 +62057,8 @@ IonicModule
  * **Performance Tips**:
  *
  * - The iOS webview has a performance bottleneck when switching out `<img src>` attributes.
- *   To increase performance of img on iOS, cache your img in advance and,
- *   if possible, lower the number of unique img. We're working on [a solution](https://github.com/driftyco/ionic/issues/3194).
+ *   To increase performance of images on iOS, cache your images in advance and,
+ *   if possible, lower the number of unique images. We're working on [a solution](https://github.com/driftyco/ionic/issues/3194).
  *
  * @usage
  * #### Basic Item List ([codepen](http://codepen.io/ionic/pen/0c2c35a34a8b18ad4d793fef0b081693))
@@ -62104,9 +62104,9 @@ IonicModule
  *   a number (pixels) or a percentage. Defaults to the height of the first item in the list.
  *   (previously named collection-item-height)
  * @param {number=} item-render-buffer The number of items to load before and after the visible
- *   items in the list. Default 3. Tip: set this higher if you have lots of img to preload, but
+ *   items in the list. Default 3. Tip: set this higher if you have lots of images to preload, but
  *   don't set it too high or you'll see performance loss.
- * @param {boolean=} force-refresh-img Force img to refresh as you scroll. This fixes a problem
+ * @param {boolean=} force-refresh-images Force images to refresh as you scroll. This fixes a problem
  *   where, when an element is interchanged as scrolling, its image will still have the old src
  *   while the new src loads. Setting this to true comes with a small performance loss.
  */

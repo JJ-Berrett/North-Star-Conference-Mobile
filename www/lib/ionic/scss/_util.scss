@@ -198,13 +198,13 @@
 }
 
 .positive, a.positive {
-  color: #004CAE ;
+  color: $positive;
 }
 .positive-bg {
-  background-color: #004CAE ;
+  background-color: $positive;
 }
 .positive-border {
-  border-color: #004CAE ;
+  border-color: $button-positive-border;
 }
 
 .calm, a.calm {
