@@ -1,4 +1,5 @@
-angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'ionic-toast', 'ngStorage'])
+"use strict";
+angular.module('starter', ['ionic', , 'controllers', 'services', 'ionic-toast', 'ngStorage'])
 	.run(function ($ionicPlatform) {
 		$ionicPlatform.ready(function () {
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -8,30 +9,41 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'controllers', 'services', 'i
 			if (window.StatusBar) {
 				StatusBar.styleLightContent();
 			}
+
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+
+      window.plugins.OneSignal
+        .startInit("d8ca736c-86df-4151-9df8-2fbfecf81436")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+
+
 		});
 	})
 
-	.config(function ($stateProvider, $urlRouterProvider, $ionicCloudProvider,  $ionicConfigProvider) {
+	.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
 
-    $ionicCloudProvider.init({
-			"core": {
-				"app_id": "ec05e39b"
-			},
-			"push": {
-				"sender_id": "1095842076318",
-				"pluginConfig": {
-					"ios": {
-						"badge": true,
-						"sound": true
-					},
-          'android': {
-            'iconColor': '#343434'
-          }
-				}
-			}
-		});
+		// $ionicCloudProvider.init({
+		// 	"core": {
+		// 		"app_id": "ec05e39b"
+		// 	},
+		// 	"push": {
+		// 		"sender_id": "1095842076318",
+		// 		"pluginConfig": {
+		// 			"ios": {
+		// 				"badge": true,
+		// 				"sound": true
+		// 			},
+     //      'android': {
+     //        'iconColor': '#343434'
+     //      }
+		// 		}
+		// 	}
+		// });
 
 		$stateProvider
 			.state('tab', {
