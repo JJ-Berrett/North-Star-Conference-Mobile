@@ -1,17 +1,22 @@
 {
-  "name": "northstar",
+  "name": "NorthStarConf",
   "version": "1.1.1",
-  "description": "northStar: An Ionic project",
+  "description": "This app is designed for North Star International for use at their annual conference",
   "dependencies": {
-    "@ionic/cloud": "^0.14.1",
-    "@ionic/cloud-angular": "^0.8.0",
     "bluebird": "^3.4.7",
+    "cordova-plugin-device": "^2.0.1",
+    "cordova-plugin-ionic-keyboard": "^2.0.5",
+    "cordova-plugin-ionic-webview": "^1.1.16",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "onesignal-cordova-plugin": "~2.2.5",
+    "cordova-ios": "~4.5.4"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -30,8 +35,21 @@
     "ios",
     {
       "platform": "ios",
-      "version": "",
+      "version": "4.4.0",
       "locator": "ios"
     }
-  ]
+  ],
+  "cordova": {
+    "plugins": {
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "ios"
+    ]
+  }
 }
