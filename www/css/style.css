@@ -169,3 +169,14 @@ div.spinner {
     width: 100%;
     vertical-align: middle;
 }
+
+.tab-nav {
+  margin-bottom: 15px;
+  background-color: #00367b;
+}
+
+
+/*.bar-footer {*/
+  /*margin-bottom: env(safe-area-inset-bottom);*/
+  /*background-color: #00367b;*/
+/*}*/
