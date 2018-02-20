@@ -1,4 +1,5 @@
 .DS_Store
+.idea/*
 node_modules/
 platforms/
 plugins/
@@ -6,5 +7,4 @@ my-release-key.keystore
 NorthStarConf.apk
 north-star-conf.keystore
 push-notification-certs/
-.idea/
 
