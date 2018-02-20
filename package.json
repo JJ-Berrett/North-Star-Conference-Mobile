@@ -4,6 +4,7 @@
   "description": "This app is designed for North Star International for use at their annual conference",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "cordova-android": "~7.0.0",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -44,11 +45,12 @@
       "onesignal-cordova-plugin": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
+      "android",
       "ios"
     ]
   }
