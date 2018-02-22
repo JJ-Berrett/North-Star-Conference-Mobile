@@ -2,7 +2,9 @@
   <ion-content class="padding has-header">
     <div class="card">
       <div class="padding">
-        <img class="speaker-photo" ng-src="{{session.speakerphoto || 'https://i.imgflip.com/1slnr0.jpg'}}" />
+        <div class="speaker-photo-wrapper">
+          <img class="speaker-photo" ng-src="{{session.speakerphoto || 'https://i.imgflip.com/1slnr0.jpg'}}" />
+        </div>
         <div class="detail-container">
           <div class="left-detail-section">
             <h3 class="positive ">{{session.title}}</h3>
