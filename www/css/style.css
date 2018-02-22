@@ -61,6 +61,14 @@ div.spinner {
     margin-bottom: 5px;
 }
 
+.session-list-item * {
+    line-height: 140%;
+}
+
+.session-list-item .session-detail-speaker {
+    margin-top: 10px;
+}
+
 .detail-container{
     /* text-align: right; */
     /* display: -webkit-flex; */
@@ -115,6 +123,11 @@ div.spinner {
     -webkit-align-items: center;
 }
 
+.schedule-list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
 .detail-button-container {
     display: -webkit-flex;
     justify-content: space-around;
@@ -125,9 +138,14 @@ div.spinner {
     margin-right: 10px;
 }
 
+.trash-button {
+    transform: translate(10px, -10px);
+}
+
 .schedule-button-container{
     display: -webkit-flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .transparent {

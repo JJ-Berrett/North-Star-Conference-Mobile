@@ -17,10 +17,10 @@
                     </div>
                     <div class="padding">
                         <ion-nav-view name="sessions-tab"></ion-nav-view>
-                        <div class="session-list-item item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText" ui-sref='tab.session-detail({id:session.id})'>
+                        <div class="session-list-item item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
+                            ui-sref='tab.session-detail({id:session.id})'>
                             <h2 class="grey-text">{{session.title}}</h2>
-                            <h4 class="session-detail-speaker">{{session.speakername}}</h4>
-                            <h4 class="session-detail-speaker">#{{session.demographic}}</h4>
+                            <h4 class="session-detail-speaker">{{session.speakername}} &nbsp;&nbsp; #{{session.demographic}}</h4>
                             <i class="icon ion-chevron-right icon-accessory"></i>
                         </div>
                     </div>
