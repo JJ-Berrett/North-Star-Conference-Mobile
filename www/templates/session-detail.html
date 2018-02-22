@@ -2,29 +2,19 @@
   <ion-content class="padding has-header">
     <div class="card">
       <div class="padding">
-        <!-- <div class="space-between"> -->
-        <h4 class="grey-text-session">{{session.sessiontype}}</h4>
-        <!-- </div> -->
-        <!-- <div> -->
-        <h5 class="grey-text-session">{{session.sessiontime}}</h5>
-        <!-- </div> -->
-        <h5 ng-click="openModal()" class=" positive" ui-sref="tab.other">{{session.room}}</h5>
-        <div class="session-detail-data">#{{session.demographic}}</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="padding">
-        <img class="speaker-photo" src="https://i.imgflip.com/1slnr0.jpg" />
-        <!-- how to access session.speakerphoto? -->
+        <img class="speaker-photo" ng-src="{{session.speakerphoto || 'https://i.imgflip.com/1slnr0.jpg'}}" />
         <div class="detail-container">
           <div class="left-detail-section">
             <h3 class="positive ">{{session.title}}</h3>
             <h4 ui-sref="tab.speaker-detail({id:session.id})" class="padding-top session-detail-speaker">{{session.speakername}}
               <i class="icon ion-chevron-right icon-accessory"></i>
             </h4>
+            <h5 class="grey-text-session">{{session.sessiontime}}</h5>
+            <h5 ng-click="openModal()" class=" positive" ui-sref="tab.other">{{session.room}}
+              <i class="icon ion-chevron-right icon-accessory"></i>
+            </h5>
+            <div class="session-detail-data">#{{session.demographic}}</div>
             <p class="padding-top grey-text">{{session.description}}</p>
-            <!-- <div class="session-detail-data">#{{session.demographic}}</div> -->
-            <!-- <div ng-click="openModal()" class=" positive" ui-sref="tab.other">{{session.room}}</div> -->
           </div>
         </div>
       </div>
