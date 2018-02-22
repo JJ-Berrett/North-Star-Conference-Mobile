@@ -2,31 +2,37 @@
   <ion-content class="padding has-header">
     <div class="card">
       <div class="padding">
+        <div class="speaker-photo-wrapper">
+          <img class="speaker-photo" ng-src="{{session.speakerphoto || 'https://i.imgflip.com/1slnr0.jpg'}}" />
+        </div>
         <div class="detail-container">
-          <div class="right-detail-section">
-            <h4 class="grey-text-session text-right">{{session.sessiontype}}</h4>
-            <h6 class="grey-text-session text-right">{{session.sessiontime}}</h6>
-          </div>
           <div class="left-detail-section">
             <h3 class="positive ">{{session.title}}</h3>
-              <div ui-sref="tab.speaker-detail({id:session.id})" class="session-detail-speaker">{{session.speakername}}
-                <i class="icon ion-chevron-right icon-accessory"></i>
-              </div>
+            <h4 ui-sref="tab.speaker-detail({id:session.id})" class="padding-top session-detail-speaker">{{session.speakername}}
+              <i class="icon ion-chevron-right icon-accessory"></i>
+            </h4>
+            <h5 class="grey-text-session">{{session.sessiontime}}</h5>
+            <h5 ng-click="openModal()" class=" positive">{{session.room}}
+              <i class="icon ion-chevron-right icon-accessory"></i>
+            </h5>
             <div class="session-detail-data">#{{session.demographic}}</div>
-            <div ng-click="openModal()" class=" positive">Room: {{session.room}}</div>
             <p class="padding-top grey-text">{{session.description}}</p>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="padding">
         <div class="padding-top detail-button-container ">
           <div class="text-center">
-            <button class=" button button-small button-positive button-outline detail-button"
-                    ng-click="addToSchedule(session.id)"><i class="icon ion-plus-round"></i>
+            <button class=" button button-small button-positive button-outline detail-button" ng-click="addToSchedule(session.id)">
+              <i class="icon ion-plus-round"></i>
             </button>
             <div class="detail-button positive">Add to Schedule</div>
           </div>
           <div class="text-center">
-            <button class="button button-small button-positive button-outline detail-button"
-                    ui-sref="tab.rateSession({id:session.id})"><i class="icon ion-ios-mic"></i>
+            <button class="button button-small button-positive button-outline detail-button" ui-sref="tab.rateSession({id:session.id})">
+              <i class="icon ion-ios-mic"></i>
             </button>
             <div class="detail-button positive">Provide Feedback</div>
           </div>

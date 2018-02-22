@@ -2,6 +2,11 @@
     color: #34383B;
 }
 
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+}
+
 div.spinner {
   margin: auto;
   position: absolute;
@@ -12,6 +17,30 @@ div.spinner {
 .spinner svg {
   width: 19% !important;
   height: 85px !important;
+}
+
+.space-between {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* align-items: flex-end; */
+}
+
+.speaker-photo-wrapper {
+    width: 100%;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.speaker-photo {
+    /* width: 40%; */
+    /* float: right; */
+    width: calc(100% + 20px);
+    margin: -10px;
 }
 
 .grey-text-session {
@@ -32,15 +61,30 @@ div.spinner {
     margin-bottom: 5px;
 }
 
+.session-list-item * {
+    line-height: 140%;
+}
+
+.session-list-item .session-detail-speaker {
+    margin-top: 10px;
+}
+
 .detail-container{
-    /*display: -webkit-flex;*/
+    /* text-align: right; */
+    /* display: -webkit-flex; */
+    /* justify-content: flex-end; */
 }
 .right-detail-section{
-    /*-webkit-align-items: flex-start;*/
+    margin: 0 10px;
+    display: -webkit-flex;    
+    -webkit-justify-content: space-between;
+    -webkit-align-items: center;
 }
 .left-detail-section{
     /*-webkit-align-items: flex-end;*/
+    /* text-align: right; */
 }
+
 .session-detail-data {
     color: #7B868C;
     margin-bottom: 5px;
@@ -50,6 +94,10 @@ div.spinner {
     margin-top: 5px;
     font-size: 20px;
 
+}
+
+.session-list-item:first-of-type {
+    border-top: none;
 }
 
 .home-container {
@@ -75,9 +123,14 @@ div.spinner {
     -webkit-align-items: center;
 }
 
+.schedule-list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
 .detail-button-container {
     display: -webkit-flex;
-    justify-content: center;
+    justify-content: space-around;
     /*-webkit-flex-direction: row;*/
 }
 
@@ -85,9 +138,14 @@ div.spinner {
     margin-right: 10px;
 }
 
+.trash-button {
+    transform: translate(10px, -10px);
+}
+
 .schedule-button-container{
     display: -webkit-flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .transparent {
