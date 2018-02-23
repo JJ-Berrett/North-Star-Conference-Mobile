@@ -11,15 +11,15 @@ option:disabled {
     color: #ddd;
 }
 
-select {
+.rating-select {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-}
-
-select.item {
     border-radius: 0;
+    border: none;
+    font-size: 14px;
+    padding-bottom: 10px;
 }
 
 div.spinner {
