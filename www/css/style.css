@@ -7,6 +7,21 @@
     justify-content: space-between;
 }
 
+option:disabled {
+    color: #ddd;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+select.item {
+    border-radius: 0;
+}
+
 div.spinner {
   margin: auto;
   position: absolute;

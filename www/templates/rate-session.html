@@ -16,8 +16,8 @@
           <!-- <span class="positive input-label">What is your email?</span> -->
           <input type="text" placeholder="What is your email?" ng-model="session.userEmail">
         </label>
-        <select style="padding: 16px" class="form-control item item-input item-stacked-label item-select" ng-model="session.rating">
-          <option value="0" disabled>How would you rate this session?</option>
+        <select style="padding: 16px; color: {{session.rating === '0' ? '#aaa' : '#000'}}" class="form-control item item-input item-stacked-label item-select" ng-model="session.rating">
+          <option style="color: #ddd" value="0" disabled>How would you rate this session?</option>
           <option value="5">Couldn't have been better!</option>
           <option value="4">Great</option>
           <option value="3">Pretty good</option>
