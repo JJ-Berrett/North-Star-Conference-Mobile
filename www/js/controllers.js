@@ -148,6 +148,7 @@ angular.module('controllers', ['ionic.cloud'])
 
   .controller('ratingCtrl', function ($scope, sessionsSrvc, $stateParams) {
     $scope.session = sessionsSrvc.getSession($stateParams.id);
+    $scope.session.rating = "0"
     $scope.submitReview = function (session) {
 
       if (session.likeFeedback || session.dislikeFeedback || session.generalFeedback) {
