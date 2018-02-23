@@ -1,51 +1,45 @@
 <ion-view view-title="Provide Feedback">
   <ion-content>
-    <div class="list">
-      <label class="item positive item-text-wrap" style="font-weight: bold">{{session.title}}</label>
-      <label class="item positive" style="font-weight: bold">{{session.speakername}}</label>
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">Full Name</span>
-        <input type="text" placeholder="Not Required" ng-model="session.userName">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">Email</span>
-        <input type="text" placeholder="Not Required" ng-model="session.userEmail">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">What did you like?</span>
-        <textarea placeholder="I really liked how..." ng-model="session.likeFeedback"></textarea>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">What could we have done better?</span>
-        <textarea placeholder="I feel that..." ng-model="session.dislikeFeedback"></textarea>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">Any other comments?</span>
-        <textarea placeholder="I really wish that..." ng-model="session.generalFeedback"></textarea>
-      </label>
-
-      <label class="item item-input item-stacked-label">
-        <span class="positive input-label">How would you rate this session?</span>
-      <div class="list">
-        <label class="item item-input item-select">
-          <div class="input-label">
-            1-5
-          </div>
-          <select class="form-control" ng-model="session.rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+    <div class="list card">
+      <div class="padding">
+        <h3 class="positive" style="font-weight: bold">{{session.title}}</h3>
+        <h4 class="grey-text padding-bottom" style="font-weight: bold">{{session.speakername}}</h4>
+        <!-- </div>
+    </div>
+    <div class="list card">
+      <div class="padding"> -->
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <!-- <span class="positive input-label">What is your name?</span> -->
+          <input type="text" placeholder="What is your name?" ng-model="session.userName">
         </label>
-
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <!-- <span class="positive input-label">What is your email?</span> -->
+          <input type="text" placeholder="What is your email?" ng-model="session.userEmail">
+        </label>
+        <select style="padding: 16px; color: {{session.rating === '0' ? '#aaa' : '#000'}}" class="form-control item item-input item-stacked-label item-select" ng-model="session.rating">
+          <option style="color: #ddd" value="0" disabled>How would you rate this session?</option>
+          <option value="5">Couldn't have been better!</option>
+          <option value="4">Great</option>
+          <option value="3">Pretty good</option>
+          <option value="2">Alright</option>
+          <option value="1">I wish I hadn't gone</option>
+        </select>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <!-- <span class="positive input-label">What did you like?</span> -->
+          <textarea placeholder="What did you like?" ng-model="session.likeFeedback"></textarea>
+        </label>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <!-- <span class="positive input-label">What could we have done better?</span> -->
+          <textarea placeholder="What could we have done better?" ng-model="session.dislikeFeedback"></textarea>
+        </label>
+        <label style="padding: 16px; padding-bottom: 0" class="item item-input item-stacked-label">
+          <!-- <span class="positive input-label">Any other comments?</span> -->
+          <textarea placeholder="Any other comments?" ng-model="session.generalFeedback"></textarea>
+        </label>
       </div>
-
     </div>
     <div class="padding">
-      <button class="button button-block button-positive button-outline" ng-click="submitReview(session)"
-              ui-sref="tab.sessions">Submit
+      <button class="button button-block button-positive button-outline" ng-click="submitReview(session)" ui-sref="tab.sessions">Submit
       </button>
     </div>
 
