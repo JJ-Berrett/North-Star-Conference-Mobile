@@ -1,5 +1,5 @@
 angular.module('services', [])
-  .service("sessionsSrvc", function ($http, $localStorage) {
+  .service("sessionsSrvc", function ($http, $localStorage, $rootScope) {
 
     if(!$localStorage.sessions){
       $localStorage.sessions = [];
@@ -10,7 +10,41 @@ angular.module('services', [])
     if(!$localStorage.mentors){
       $localStorage.mentors = [];
     }
-    var schedule = $localStorage.schedule;
+    if(!localStorage.notifications){
+      $localStorage.notifications = [];
+    }
+    if(!localStorage.badges){
+      $localStorage.badge = 0;
+    }
+
+    $localStorage.notifications = [
+      {
+        id: 1,
+        title: 'Test 1',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:52:25'
+      },
+      {
+        id: 2,
+        title: 'Test 2',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:40:30'
+      },
+      {
+        id: 3,
+        title: 'Test number 3',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:30:40'
+      },
+      {
+        id: 4,
+        title: 'Test number 4',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:52:50'
+      }
+    ];
+
+    let schedule = $localStorage.schedule;
 
     this.getSessions = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions')
@@ -31,16 +65,16 @@ angular.module('services', [])
     };
 
     this.addToSchedule = function (id) {
-      var response = {};
-      var scheduledSession = $localStorage.sessions.find(function (session) {
+      let response = {};
+      let scheduledSession = $localStorage.sessions.find(function (session) {
         return session.id === parseInt(id);
       });
 
-      var sessionId = schedule.find(function (session) {
+      let sessionId = schedule.find(function (session) {
         return session.id === scheduledSession.id
       });
 
-      var sessionType = schedule.find(function (session) {
+      let sessionType = schedule.find(function (session) {
         return session.sessiontype === scheduledSession.sessiontype
       });
 
@@ -76,7 +110,7 @@ angular.module('services', [])
     };
 
 		function removeSessionFromSchedule(array, id, sessionId) {
-			var i = array.length;
+			let i = array.length;
 			while (i--) {
 				if (array[i]
 					&& array[i].hasOwnProperty(id)
@@ -108,5 +142,44 @@ angular.module('services', [])
         return mentor.id === parseInt(id);
       })
     };
+
+    this.addNotification = function (data) {
+      let notifications = $localStorage.notifications;
+      let badge = $localStorage.badge;
+
+      let notification = {
+        id: data.notification.payload.notificationId,
+        title: data.notification.payload.title,
+        body: data.notification.payload.body,
+        timestamp: new Date().now()
+      };
+
+      notifications.push(notification);
+      $localStorage.notifications = notifications;
+      badge++;
+
+      $localStorage.badge = badge;
+      $rootScope.$broadcast('badgeEvent');
+    };
+
+    this.getNotifications = function () {
+      return $localStorage.notifications;
+    };
+
+    this.removeNotification = function (id) {
+      let notifications = $localStorage.notifications;
+      for(let i = 0; i < notifications.length; i++) {
+        if(notifications[i].id === id) {
+          notifications.splice(i, 1);
+        }
+      }
+      $localStorage.notifications = notifications;
+      return 1;
+    };
+
+    this.clearNotifications = function () {
+      $localStorage.notifications = [];
+      return [];
+    }
 
   });

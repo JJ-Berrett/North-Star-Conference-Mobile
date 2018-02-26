@@ -1,45 +1,29 @@
-angular.module('controllers', ['ionic.cloud'])
+angular.module('controllers', [])
 
-  .controller('HomeCtrl', function ($scope, $ionicPush) {
-    $ionicPush.register()
-      .then(function (t) {
-        return $ionicPush.saveToken(t, true);
-      })
-      .then(function (t) {
-        console.log('Token saved:', t.token);
-      })
-      .catch(function (err) {
-        console.log('My Error ' + JSON.stringify(err))
-      });
+  .controller('HomeCtrl', function ($scope) {
 
-    // $scope.$on('cloud:push:notification', function (event, data) {
-    // 	var msg = data.message;
-    // 	alert(msg.text);
-    // });
   })
 
-  .controller('SessionCtrl', function ($scope, sessionsSrvc, ionicToast) {
+  .controller('SessionCtrl', function ($scope, sessionsSrvc) {
 
-    var sessionLength = 0;
-    var sessionType;
-    var sessions;
+    let sessions;
     $scope.sessions = {};
 
     function getAllSessions() {
       $scope.loading = true;
       sessionsSrvc.getSessions()
-        .then(function (res) {
+        .then((res) => {
           sessions = res.data;
           sessionsSrvc.setSessions(sessions);
           return sessions;
         })
         .then(function (result) {
-          var mappedSessions = [];
+          let mappedSessions = [];
           sessions = result;
 
           //Create Mapped array with sessionType, SessionTime, then array of sessions
           result.map(function (session) {
-            var isMapped = mappedSessions.find(function (mappedSession) {
+            let isMapped = mappedSessions.find(function (mappedSession) {
               return mappedSession.sessionType === session.sessiontype;
             });
 
@@ -54,7 +38,7 @@ angular.module('controllers', ['ionic.cloud'])
 
           //Add sessions to the session object in the mapped session.
           result.map(function (session) {
-            var mappedSession = mappedSessions.find(function (mappedSession) {
+            let mappedSession = mappedSessions.find(function (mappedSession) {
               return mappedSession.sessionTime === session.sessiontime;
             });
             if (mappedSession) {
@@ -65,11 +49,6 @@ angular.module('controllers', ['ionic.cloud'])
           $scope.loading = false;
         })
     }
-
-    function isInArray(value, array) {
-      return array.indexOf(value);
-    }
-
     getAllSessions()
   })
 
@@ -77,7 +56,7 @@ angular.module('controllers', ['ionic.cloud'])
     $scope.session = sessionsSrvc.getSession($stateParams.id);
 
     $scope.addToSchedule = function (id) {
-      var status = sessionsSrvc.addToSchedule(id);
+      let status = sessionsSrvc.addToSchedule(id);
       if (status.sessionId) {
         ionicToast.show('Added to your schedule!', 'middle', false, 1500);
       }
@@ -103,20 +82,20 @@ angular.module('controllers', ['ionic.cloud'])
 
   .controller('scheduleCtrl', function ($scope, sessionsSrvc, ionicToast) {
     $scope.sendSms = function () {
-      var message = 'My Schedule \n \n';
+      let message = 'My Schedule \n \n';
       schedule = sessionsSrvc.getSchedule();
       if (schedule) {
-        for (var i = 0; i < schedule.length; i++) {
+        for (let i = 0; i < schedule.length; i++) {
           message = message.concat("Breakout " + (i + 1) + ": " + schedule[i].title + "\n \n");
         }
-        var options = {
+        let options = {
           replaceLineBreaks: false, // true to replace \n by a new line, false by default
           android: {
             intent: 'INTENT'  // send SMS with the native android SMS messaging
             //intent: '' // send SMS without open any other app
           }
         };
-        var number = '';
+        let number = '';
         sms.send(number, message, options);
       }
       else {
@@ -126,7 +105,7 @@ angular.module('controllers', ['ionic.cloud'])
 
 
     function getSchedule() {
-      var scheduledSessions = sessionsSrvc.getSchedule();
+      let scheduledSessions = sessionsSrvc.getSchedule();
       if (scheduledSessions) {
         $scope.scheduledSessions = scheduledSessions;
         $scope.noSchedule = false;
@@ -152,7 +131,7 @@ angular.module('controllers', ['ionic.cloud'])
     $scope.submitReview = function (session) {
 
       if (session.likeFeedback || session.dislikeFeedback || session.generalFeedback) {
-        var review = {
+        let review = {
           sessionId: session.id,
           sessionTitle: session.title,
           sessionSpeaker: session.speaker,
@@ -186,11 +165,11 @@ angular.module('controllers', ['ionic.cloud'])
     $scope.session = sessionsSrvc.getSession($stateParams.id);
     $scope.question = '';
     $scope.sendQuestion = function (question) {
-      if (question == '') {
+      if (question === '') {
         ionicToast.show('Oops, you did not type anything!', 'middle', false, 1000);
       }
       else {
-        var Question = {
+        let Question = {
           sessionId: $stateParams.id,
           question: question
         };
@@ -203,7 +182,7 @@ angular.module('controllers', ['ionic.cloud'])
     };
   })
 
-  .controller('MentorCtrl', function ($scope, sessionsSrvc, ionicToast, $state) {
+  .controller('MentorCtrl', function ($scope, sessionsSrvc) {
 
     function getMentors() {
       sessionsSrvc.getMentors()
@@ -211,11 +190,11 @@ angular.module('controllers', ['ionic.cloud'])
 
           sessionsSrvc.setMentors(result.data);
 
-          var mappedMentors = [];
-          var mentors = result.data;
+          let mappedMentors = [];
+          let mentors = result.data;
 
           mentors.map(function (mentor) {
-            var isMapped = mappedMentors.find(function (mappedMentor) {
+            let isMapped = mappedMentors.find(function (mappedMentor) {
               return mappedMentor.demographic === mentor.demographic;
             });
 
@@ -229,7 +208,7 @@ angular.module('controllers', ['ionic.cloud'])
 
           //Add sessions to the session object in the mapped session.
           mentors.map(function (mentor) {
-            var mappedMentor = mappedMentors.find(function (mappedMentor) {
+            let mappedMentor = mappedMentors.find(function (mappedMentor) {
               return mappedMentor.demographic === mentor.demographic;
             });
             if (mappedMentor) {
@@ -240,20 +219,19 @@ angular.module('controllers', ['ionic.cloud'])
           $scope.loading = false;
         })
     }
-
     getMentors();
   })
 
   .controller('MentorDetailCtrl', function ($scope, sessionsSrvc, $stateParams, ionicToast, $state) {
     console.log($stateParams.id);
     $scope.mentor = sessionsSrvc.getMentor($stateParams.id);
-    if($scope.mentor.photo == "" || $scope.mentor.photo == "TBD"){
+    if($scope.mentor.photo === "" || $scope.mentor.photo === "TBD"){
       $scope.mentor.photo = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
     }
 
     $scope.sendSms = function (number) {
-      var message = '';
-      var options = {
+      let message = '';
+      let options = {
         replaceLineBreaks: false, // true to replace \n by a new line, false by default
         android: {
           intent: 'INTENT'  // send SMS with the native android SMS messaging
@@ -266,22 +244,53 @@ angular.module('controllers', ['ionic.cloud'])
   })
 
   .controller('SpeakerDetailCtrl', function ($scope, sessionsSrvc, $stateParams) {
-    console.log($stateParams.id);
-    $scope.speaker = sessionsSrvc.getSession($stateParams.id);
+  console.log($stateParams.id);
+  $scope.speaker = sessionsSrvc.getSession($stateParams.id);
 
-    if($scope.speaker.speakerphoto == "" || $scope.speaker.speakerphoto == "TBD"){
-      $scope.speaker.speakerphoto = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
-    }
+  if($scope.speaker.speakerphoto === "" || $scope.speaker.speakerphoto === "TBD"){
+    $scope.speaker.speakerphoto = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
+  }
 
-    if($scope.speaker.speakername == "" || $scope.speaker.speakername == "TBD"){
-      $scope.speaker.speakername = "Speaker Not Yet Decided"
-    }
-    if($scope.speaker.speakerbio == "" || $scope.speaker.speakerbio == "TBD"){
-      $scope.speaker.speakerbio = "No Bio"
-    }
+  if($scope.speaker.speakername === "" || $scope.speaker.speakername === "TBD"){
+    $scope.speaker.speakername = "Speaker Not Yet Decided"
+  }
+  if($scope.speaker.speakerbio === "" || $scope.speaker.speakerbio ===  "TBD"){
+    $scope.speaker.speakerbio = "No Bio"
+  }
+})
+
+.controller('NotificationCtl', function ($scope, sessionsSrvc) {
+
+  function updateNotifications () {
+    let notifications = sessionsSrvc.getNotifications();
+    $scope.badgeCount = notifications.length;
+    $scope.notifications = notifications;
+  }
+
+  $scope.close = function (id) {
+    sessionsSrvc.removeNotification(id);
+  };
+
+  $scope.clearNotifications = function () {
+    sessionsSrvc.clearNotifications();
+    updateNotifications();
+    $scope.badgeCount = 0;
+  };
 
 
+  $scope.$on('$ionicView.enter', function (e) {
+    updateNotifications();
   });
+
+  $scope.$on('$ionicView.leave', function (e) {
+    updateNotifications();
+  });
+
+  $scope.$on('badgeEvent', function (e) {
+    updateNotifications();
+  });
+
+});
 
 
 
