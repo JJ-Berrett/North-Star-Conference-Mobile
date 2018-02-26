@@ -1,5 +1,5 @@
 angular.module('services', [])
-  .service("sessionsSrvc", function ($http, $localStorage) {
+  .service("sessionsSrvc", function ($http, $localStorage, $rootScope) {
 
     if(!$localStorage.sessions){
       $localStorage.sessions = [];
@@ -10,7 +10,14 @@ angular.module('services', [])
     if(!$localStorage.mentors){
       $localStorage.mentors = [];
     }
-    var schedule = $localStorage.schedule;
+    if(!localStorage.notifications){
+      $localStorage.notifications = [];
+    }
+    if(!localStorage.badges){
+      $localStorage.badge = 5;
+    }
+
+    let schedule = $localStorage.schedule;
 
     this.getSessions = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions')
@@ -31,16 +38,16 @@ angular.module('services', [])
     };
 
     this.addToSchedule = function (id) {
-      var response = {};
-      var scheduledSession = $localStorage.sessions.find(function (session) {
+      let response = {};
+      let scheduledSession = $localStorage.sessions.find(function (session) {
         return session.id === parseInt(id);
       });
 
-      var sessionId = schedule.find(function (session) {
+      let sessionId = schedule.find(function (session) {
         return session.id === scheduledSession.id
       });
 
-      var sessionType = schedule.find(function (session) {
+      let sessionType = schedule.find(function (session) {
         return session.sessiontype === scheduledSession.sessiontype
       });
 
@@ -76,7 +83,7 @@ angular.module('services', [])
     };
 
 		function removeSessionFromSchedule(array, id, sessionId) {
-			var i = array.length;
+			let i = array.length;
 			while (i--) {
 				if (array[i]
 					&& array[i].hasOwnProperty(id)
@@ -108,5 +115,38 @@ angular.module('services', [])
         return mentor.id === parseInt(id);
       })
     };
+
+    this.addNotification = function (notification) {
+      let notifications = $localStorage.notifications;
+      notifications.push(notification);
+      $localStorage.notifications = notifications;
+      let badge = $localStorage.badge;
+      badge++;
+      $localStorage.badge = badge;
+      $rootScope.$broadcast('addBadge');
+    };
+
+    this.resetBadgeCount = function () {
+      $localStorage.badge = 0;
+      return 0;
+    };
+
+    this.getNotifications = function () {
+      return $localStorage.notifications;
+    };
+
+    this.removeNotification = function (id) {
+      let notifications = $localStorage.notifications;
+      for(let i = 0; i < notifications.length; i++) {
+        if(notifications[i].id === id) {
+          notifications.splice(i, 1);
+        }
+      }
+      $localStorage.notifications = notifications;
+    };
+
+    this.getBadgeCount = function () {
+      return $localStorage.badge;
+    }
 
   });

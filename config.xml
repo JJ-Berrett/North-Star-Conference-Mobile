@@ -24,7 +24,6 @@
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="onesignal-cordova-plugin" spec="~2.2.5" />
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
@@ -62,7 +61,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="onesignal-cordova-plugin" spec="~2.2.5" />
     <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
     <platform name="android">
         <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
@@ -84,7 +82,8 @@
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     </platform>
+    <allow-navigation href="http://192.168.1.108:8100" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.3.1" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.4" />
-    <allow-navigation href="http://192.168.1.108:8100" />
 </widget>

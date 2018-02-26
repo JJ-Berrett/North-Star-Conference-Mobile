@@ -1,0 +1,17 @@
+<ion-view view-title="Notifications">
+  <ion-content class="has-header" delegate-handle="stickyScroll">
+    <h1>MOnkey cat</h1>
+    <div class="list card" ng-repeat="notification in notifications">
+      <ion-list type="list">
+        <ion-item class="item">
+          <h2>{{notification.title}}</h2>
+          <h3><span>{{notification.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</span></h3>
+          <p>{{notification.body}}</p>
+          p>{{notification.id}}</p>
+          <ion-option-button class="button-assertive icon ion-android-delete" ng-click="close(notification.id)"  style="min-width:100px">
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
