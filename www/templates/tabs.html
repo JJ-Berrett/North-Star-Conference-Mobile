@@ -12,9 +12,12 @@
     <ion-nav-view name="schedule-tab"></ion-nav-view>
   </ion-tab>
 
+  <ion-tab title="Notifications" icon="ion-ios-email-outline" ui-sref="tab.notifications"  badge="badgeCount"  badge-style="badge-assertive" ng-controller="NotificationCtl" >
+    <ion-nav-view name="notification-tab"></ion-nav-view>
+  </ion-tab>
+
   <ion-tab title="Other" icon="ion-ios-keypad-outline" ui-sref="tab.other">
     <ion-nav-view name="other-tab"></ion-nav-view>
   </ion-tab>
-
 
 </ion-tabs>
