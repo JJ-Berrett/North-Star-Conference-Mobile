@@ -14,8 +14,35 @@ angular.module('services', [])
       $localStorage.notifications = [];
     }
     if(!localStorage.badges){
-      $localStorage.badge = 5;
+      $localStorage.badge = 0;
     }
+
+    $localStorage.notifications = [
+      {
+        id: 1,
+        title: 'Test 1',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:52:25'
+      },
+      {
+        id: 2,
+        title: 'Test 2',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:40:30'
+      },
+      {
+        id: 3,
+        title: 'Test number 3',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:30:40'
+      },
+      {
+        id: 4,
+        title: 'Test number 4',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:52:50'
+      }
+    ];
 
     let schedule = $localStorage.schedule;
 
@@ -116,19 +143,23 @@ angular.module('services', [])
       })
     };
 
-    this.addNotification = function (notification) {
+    this.addNotification = function (data) {
       let notifications = $localStorage.notifications;
+      let badge = $localStorage.badge;
+
+      let notification = {
+        id: data.notification.payload.notificationId,
+        title: data.notification.payload.title,
+        body: data.notification.payload.body,
+        timestamp: new Date().now()
+      };
+
       notifications.push(notification);
       $localStorage.notifications = notifications;
-      let badge = $localStorage.badge;
       badge++;
-      $localStorage.badge = badge;
-      $rootScope.$broadcast('addBadge');
-    };
 
-    this.resetBadgeCount = function () {
-      $localStorage.badge = 0;
-      return 0;
+      $localStorage.badge = badge;
+      $rootScope.$broadcast('badgeEvent');
     };
 
     this.getNotifications = function () {
@@ -143,10 +174,12 @@ angular.module('services', [])
         }
       }
       $localStorage.notifications = notifications;
+      return 1;
     };
 
-    this.getBadgeCount = function () {
-      return $localStorage.badge;
+    this.clearNotifications = function () {
+      $localStorage.notifications = [];
+      return [];
     }
 
   });
