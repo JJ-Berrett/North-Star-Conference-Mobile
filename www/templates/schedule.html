@@ -11,19 +11,17 @@
         <div class="item-text-wrap icon-right session-list-item schedule-list-item" ui-sref='tab.session-detail({id:session.id})'>
           <div class="session-tile-info">
             <h2 class="positive">{{session.title}}</h2>
-            <h3 class="positive session-detail-speaker">{{session.sessiontime}}</h3>
-            <h4 class="grey-text-session">{{session.sessiontype}} -
-              <span style=" text-transform:none;">{{session.room}}</span>
-            </h4>
             <h3 class="grey-text-italic session-detail-speaker">{{session.speakername}}</h3>
+            <h3 class="session-detail-speaker">{{session.sessiontype.toUpperCase()}} - {{session.room}}</h3>
+            <h4 class="grey-text-session grey-text-italic">
+               {{session.sessiontime}}
+            </h4>
           </div>
           <div class="schedule-button-container">
             <button class="trash-button button button-clear" ng-click="removeFromSchedule({id:session.id})">
               <i class="positive icon ion-ios-trash-outline"></i>
             </button>
-            <!-- <button class="button button-clear" ui-sref='tab.session-detail({id:session.id})'> -->
             <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
-            <!-- </button> -->
           </div>
         </div>
         <ion-nav-view name="singleSession-tab"></ion-nav-view>

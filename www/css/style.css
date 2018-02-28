@@ -70,8 +70,8 @@ div.spinner {
 }
 
 .session-detail-speaker {
-    color: #7B868C;
-    font-style: italic;
+    /* color: #7B868C; */
+    /* font-style: italic; */
     margin-top: 5px;
     margin-bottom: 5px;
 }
