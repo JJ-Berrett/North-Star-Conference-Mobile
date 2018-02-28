@@ -184,6 +184,12 @@ div.spinner {
     top: 0;
 }
 
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* Fix modal backdrop for smaller devices */
 @media (max-width: 679px) {
     .active .modal-backdrop-bg {
