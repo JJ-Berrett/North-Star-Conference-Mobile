@@ -1,6 +1,6 @@
 "use strict";
-angular.module('starter', ['ionic', , 'controllers', 'services', 'ionic-toast', 'ngStorage'])
-	.run(function ($ionicPlatform) {
+angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast', 'ngStorage'])
+	.run(function ($ionicPlatform, sessionsSrvc) {
 		$ionicPlatform.ready(function () {
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -10,40 +10,15 @@ angular.module('starter', ['ionic', , 'controllers', 'services', 'ionic-toast', 
 				StatusBar.styleLightContent();
 			}
 
-      var notificationOpenedCallback = function(jsonData) {
-        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      };
-
       window.plugins.OneSignal
         .startInit("d8ca736c-86df-4151-9df8-2fbfecf81436")
-        .handleNotificationOpened(notificationOpenedCallback)
+        .handleNotificationReceived(sessionsSrvc.addNotification)
         .endInit();
-
-
-		});
+    });
 	})
 
 	.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
-
-
-		// $ionicCloudProvider.init({
-		// 	"core": {
-		// 		"app_id": "ec05e39b"
-		// 	},
-		// 	"push": {
-		// 		"sender_id": "1095842076318",
-		// 		"pluginConfig": {
-		// 			"ios": {
-		// 				"badge": true,
-		// 				"sound": true
-		// 			},
-     //      'android': {
-     //        'iconColor': '#343434'
-     //      }
-		// 		}
-		// 	}
-		// });
 
 		$stateProvider
 			.state('tab', {
@@ -60,7 +35,15 @@ angular.module('starter', ['ionic', , 'controllers', 'services', 'ionic-toast', 
 					}
 				}
 			})
-
+      .state('tab.notifications', {
+        url: '/notifications',
+        views: {
+          'notification-tab': {
+            templateUrl: 'templates/notifications.html',
+            controller: 'NotificationCtl'
+          }
+        }
+      })
 			.state('tab.sessions', {
 				url: '/sessions',
 				views: {
@@ -162,6 +145,6 @@ angular.module('starter', ['ionic', , 'controllers', 'services', 'ionic-toast', 
         }
       })
 
-		$urlRouterProvider.otherwise('/tab/home');
+    $urlRouterProvider.otherwise('/tab/home');
 
 	});

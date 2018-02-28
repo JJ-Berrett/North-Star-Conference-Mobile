@@ -6,9 +6,10 @@ The North Star conference app helps users choose which sessions they want to att
 NorthStarConf uses a number of open source projects to work properly:
 
 * AngularJS - HTML enhanced for web apps!
-* Cordova - iPhone apis
+* Cordova - Mobile phone apis
 * Ionic - Angular wrapper for creating native angular apps
 * node.js - evented I/O for the backend
+* openSignal - Push notifications
 
 ### Installation
 
