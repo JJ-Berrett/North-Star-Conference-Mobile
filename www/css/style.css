@@ -190,6 +190,10 @@ div.spinner {
     align-items: center;
 }
 
+.notification p {
+    margin: 8px 0;
+}
+
 /* Fix modal backdrop for smaller devices */
 @media (max-width: 679px) {
     .active .modal-backdrop-bg {

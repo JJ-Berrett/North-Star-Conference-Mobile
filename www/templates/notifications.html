@@ -7,16 +7,16 @@
   <ion-content class="has-header" delegate-handle="stickyScroll">
     <ion-list type="list">
       <!-- <div class="list" > -->
-        <ion-item class="card" ng-repeat="notification in notifications | orderBy: '-timestamp'">
+        <ion-item class="card notification" ng-repeat="notification in notifications | orderBy: '-fullDate'">
           <div style="margin-right: -33px">
             <div class="notification-header">
               <h2>{{notification.title}}</h2>
               <h3 class="grey-text">
-                <span>{{notification.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+                <span>{{notification.timeString}}</span>
               </h3>
             </div>
             <p>{{notification.body}}</p>
-            <p>{{notification.id}}</p>
+            <!-- <p>{{notification.id}}</p> -->
             <ion-option-button class="button-assertive icon ion-android-delete" ng-click="close(notification.id)" style="min-width:100px">
             </ion-option-button>
           </div>
