@@ -10,8 +10,8 @@
         <ion-item class="card notification" ng-repeat="notification in notifications | orderBy: '-fullDate'">
           <div style="margin-right: -33px">
             <div class="notification-header">
-              <h2>{{notification.title}}</h2>
-              <h3 class="grey-text">
+              <h2 class="positive" style="white-space: initial;">{{notification.title}}</h2>
+              <h3 class="grey-text" style="white-space: initial;">
                 <span>{{notification.timeString}}</span>
               </h3>
             </div>

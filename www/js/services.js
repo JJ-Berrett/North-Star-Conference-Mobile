@@ -32,7 +32,7 @@ angular.module('services', [])
       },
       {
         id: 2,
-        title: 'Test 2',
+        title: 'Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2',
         body: 'This is an example message that will be in the notifications object',
         timestamp: 'Sun Feb 25 2018 19:40:30'
       },
