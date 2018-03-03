@@ -1,8 +1,10 @@
 <ion-view view-title="{{speaker.speakername}}">
-  <ion-content class="padding has-header">
-    <div class="list card">
-      <div class="item item-body">
-        <img class="full-image" src="{{speaker.speakerphoto}}">
+  <ion-content>
+    <div class="card">
+      <div class="padding">
+        <div class="speaker-photo-wrapper">
+          <img class="speaker-photo" src="{{speaker.speakerphoto}}">
+        </div>
         <h2 class="positive">{{speaker.speakername}}</h2>
         <p style="white-space: pre-line;">
           {{speaker.speakerbio}}

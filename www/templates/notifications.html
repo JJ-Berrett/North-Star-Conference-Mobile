@@ -5,17 +5,23 @@
     </button>
   </ion-nav-buttons>
   <ion-content class="has-header" delegate-handle="stickyScroll">
-    <div class="list card" ng-repeat="notification in notifications | orderBy: '-timestamp'">
-      <ion-list type="list">
-        <ion-item class="item">
-          <h2>{{notification.title}}</h2>
-          <h3><span>{{notification.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</span></h3>
-          <p>{{notification.body}}</p>
-          <p>{{notification.id}}</p>
-          <ion-option-button class="button-assertive icon ion-android-delete" ng-click="close(notification.id)" style="min-width:100px">
-          </ion-option-button>
+    <ion-list type="list">
+      <!-- <div class="list" > -->
+        <ion-item class="card notification" ng-repeat="notification in notifications | orderBy: '-fullDate'">
+          <div style="margin-right: -33px">
+            <div class="notification-header">
+              <h2 class="positive" style="white-space: initial;">{{notification.title}}</h2>
+              <h3 class="grey-text" style="white-space: initial;">
+                <span>{{notification.timeString}}</span>
+              </h3>
+            </div>
+            <p style="white-space: initial;">{{notification.body}}</p>
+            <!-- <p>{{notification.id}}</p> -->
+            <ion-option-button class="button-assertive icon ion-android-delete" ng-click="close(notification.id)" style="min-width:100px">
+            </ion-option-button>
+          </div>
         </ion-item>
-      </ion-list>
-    </div>
+      <!-- </div> -->
+    </ion-list>
   </ion-content>
 </ion-view>

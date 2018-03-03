@@ -1,19 +1,19 @@
 angular.module('services', [])
   .service("sessionsSrvc", function ($http, $localStorage, $rootScope) {
 
-    if(!$localStorage.sessions){
+    if (!$localStorage.sessions) {
       $localStorage.sessions = [];
     }
-    if(!$localStorage.schedule){
+    if (!$localStorage.schedule) {
       $localStorage.schedule = [];
     }
-    if(!$localStorage.mentors){
+    if (!$localStorage.mentors) {
       $localStorage.mentors = [];
     }
-    if(!localStorage.notifications){
+    if (!localStorage.notifications) {
       $localStorage.notifications = [];
     }
-    if(!localStorage.badges){
+    if (!localStorage.badges) {
       $localStorage.badge = 0;
     }
 
@@ -25,16 +25,16 @@ angular.module('services', [])
         timestamp: 'Sun Feb 25 2018 19:52:25'
       },
       {
-        id: 2,
-        title: 'Test 2',
-        body: 'This is an example message that will be in the notifications object',
-        timestamp: 'Sun Feb 25 2018 19:40:30'
-      },
-      {
         id: 3,
         title: 'Test number 3',
         body: 'This is an example message that will be in the notifications object',
         timestamp: 'Sun Feb 25 2018 19:30:40'
+      },
+      {
+        id: 2,
+        title: 'Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2',
+        body: 'This is an example message that will be in the notifications object',
+        timestamp: 'Sun Feb 25 2018 19:40:30'
       },
       {
         id: 4,
@@ -109,31 +109,31 @@ angular.module('services', [])
         })
     };
 
-		function removeSessionFromSchedule(array, id, sessionId) {
-			let i = array.length;
-			while (i--) {
-				if (array[i]
-					&& array[i].hasOwnProperty(id)
-					&& (arguments.length > 2 && array[i][id] === parseInt(sessionId.id))) {
+    function removeSessionFromSchedule(array, id, sessionId) {
+      let i = array.length;
+      while (i--) {
+        if (array[i]
+          && array[i].hasOwnProperty(id)
+          && (arguments.length > 2 && array[i][id] === parseInt(sessionId.id))) {
 
-					array.splice(i, 1);
-				}
-			}
-		}
+          array.splice(i, 1);
+        }
+      }
+    }
 
     this.removeFromSchedule = function (sessionId) {
       removeSessionFromSchedule(schedule, "id", sessionId);
       $localStorage.schedule = schedule;
     };
 
-		this.sendQuestion = function (question) {
-			return $http.post('https://northstarconferenceadmin.herokuapp.com/api/questions', question)
-				.then(function (res) {
-					return res;
-				})
-		};
+    this.sendQuestion = function (question) {
+      return $http.post('https://northstarconferenceadmin.herokuapp.com/api/questions', question)
+        .then(function (res) {
+          return res;
+        })
+    };
 
-		this.getMentors = function () {
+    this.getMentors = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/mentors')
     };
 
@@ -163,13 +163,33 @@ angular.module('services', [])
     };
 
     this.getNotifications = function () {
-      return $localStorage.notifications;
+      let { notifications } = $localStorage
+      console.log(notifications)
+      for (let i = 0; i < notifications.length; i++) {
+        let { timestamp } = notifications[i]
+        let arr = timestamp.split(/ /)
+        let day = arr[0]
+        let month = (new Date(timestamp)).getMonth() // "feb" does not work..
+        let monthString = arr[1]
+        let date = arr[2]
+        let year = arr[3]
+        let time = arr[4].split(/:/)
+        let hour = time[0]
+        let minute = time[1]
+        let second = time[2]
+        let fullDate = new Date(year, month, date, hour, minute, second)
+        let timeString = fullDate.toDateString().replace(/( \d{4})/, ",") + " " + fullDate.toLocaleTimeString().replace(/:\d{2} /, " ")
+        notifications[i].fullDate = fullDate
+        notifications[i].timeString = timeString
+      }
+      console.log(notifications)
+      return notifications;
     };
 
     this.removeNotification = function (id) {
       let notifications = $localStorage.notifications;
-      for(let i = 0; i < notifications.length; i++) {
-        if(notifications[i].id === id) {
+      for (let i = 0; i < notifications.length; i++) {
+        if (notifications[i].id === id) {
           notifications.splice(i, 1);
         }
       }
