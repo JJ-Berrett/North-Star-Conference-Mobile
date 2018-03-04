@@ -16,7 +16,6 @@
                         {{mappedSession.sessionType}} ({{mappedSession.sessionTime}})
                     </div>
                     <div class="padding">
-                        <!-- <ion-nav-view name="sessions-tab"></ion-nav-view> -->
                         <div class="session-list-item item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
                             ui-sref='tab.session-detail({id:session.id})'>
                             <h2 class="grey-text">{{session.title}}</h2>
