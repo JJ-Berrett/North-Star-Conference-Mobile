@@ -163,26 +163,22 @@ angular.module('services', [])
     };
 
     this.getNotifications = function () {
-      let { notifications } = $localStorage
-      console.log(notifications)
+      let { notifications } = $localStorage;
       for (let i = 0; i < notifications.length; i++) {
-        let { timestamp } = notifications[i]
-        let arr = timestamp.split(/ /)
-        let day = arr[0]
-        let month = (new Date(timestamp)).getMonth() // "feb" does not work..
-        let monthString = arr[1]
-        let date = arr[2]
-        let year = arr[3]
-        let time = arr[4].split(/:/)
-        let hour = time[0]
-        let minute = time[1]
-        let second = time[2]
-        let fullDate = new Date(year, month, date, hour, minute, second)
-        let timeString = fullDate.toDateString().replace(/( \d{4})/, ",") + " " + fullDate.toLocaleTimeString().replace(/:\d{2} /, " ")
-        notifications[i].fullDate = fullDate
-        notifications[i].timeString = timeString
+        let { timestamp } = notifications[i];
+        let arr = timestamp.split(/ /);
+        let month = (new Date(timestamp)).getMonth(); // "feb" does not work..
+        let date = arr[2];
+        let year = arr[3];
+        let time = arr[4].split(/:/);
+        let hour = time[0];
+        let minute = time[1];
+        let second = time[2];
+        let fullDate = new Date(year, month, date, hour, minute, second);
+        let timeString = fullDate.toDateString().replace(/( \d{4})/, ",") + " " + fullDate.toLocaleTimeString().replace(/:\d{2} /, " ");
+        notifications[i].fullDate = fullDate;
+        notifications[i].timeString = timeString;
       }
-      console.log(notifications)
       return notifications;
     };
 
@@ -192,14 +188,14 @@ angular.module('services', [])
         if (notifications[i].id === id) {
           notifications.splice(i, 1);
         }
+        $rootScope.$broadcast('badgeEvent');
       }
       $localStorage.notifications = notifications;
-      return 1;
     };
 
     this.clearNotifications = function () {
       $localStorage.notifications = [];
-      return [];
-    }
+      $rootScope.$broadcast('badgeEvent');
+    };
 
   });

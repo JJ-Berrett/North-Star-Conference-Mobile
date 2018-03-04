@@ -70,6 +70,7 @@ angular.module('controllers', [])
 
           console.log(mappedSessions)
           $scope.mappedSessions = mappedSessions;
+          console.log(mappedSessions);
           $scope.loading = false;
         })
     }
@@ -287,18 +288,17 @@ angular.module('controllers', [])
 
   function updateNotifications () {
     let notifications = sessionsSrvc.getNotifications();
-    $scope.badgeCount = notifications.length;
     $scope.notifications = notifications;
+    $scope.badgeCount = notifications.length;
   }
 
-  $scope.close = function (id) {
+  $scope.close = function (id,) {
     sessionsSrvc.removeNotification(id);
   };
 
   $scope.clearNotifications = function () {
     sessionsSrvc.clearNotifications();
     updateNotifications();
-    $scope.badgeCount = 0;
   };
 
 
@@ -306,9 +306,9 @@ angular.module('controllers', [])
     updateNotifications();
   });
 
-  $scope.$on('$ionicView.leave', function (e) {
-    updateNotifications();
-  });
+  // $scope.$on('$ionicView.leave', function (e) {
+  //   updateNotifications();
+  // });
 
   $scope.$on('badgeEvent', function (e) {
     updateNotifications();
