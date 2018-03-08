@@ -5,27 +5,25 @@
                 <div class="item item-input-inset">
                     <label class="item-input-wrapper" id="search-input">
                         <i class="icon ion-search placeholder-icon"></i>
-                        <input type="text" placeholder="Search" ng-model="searchText">
+                        <input type="text" placeholder="Search" ng-model="searchText" />
                     </label>
                 </div>
                 <div class="container spinner" ng-if="loading">
                     <ion-spinner icon="android"></ion-spinner>
                 </div>
-                <div class="card" ng-repeat-start="mappedSession in mappedSessions | orderBy: 'sessionType'">
-                    <div class="item positive item-divider-ios">
-                        {{mappedSession.sessionType}} ({{mappedSession.sessionTime}})
+                <div class="card" ng-repeat="mappedSession in mappedSessions | orderBy: 'sessionType'">
+                    <div class="item positive">
+                        {{mappedSession.sessionType.toUpperCase()}} | {{mappedSession.sessionTime}}
                     </div>
-                    <div class="padding">
-                        <ion-nav-view name="sessions-tab"></ion-nav-view>
+                    <div class="padding" style="padding-top: 4px">
                         <div class="session-list-item item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
                             ui-sref='tab.session-detail({id:session.id})'>
                             <h2 class="grey-text">{{session.title}}</h2>
-                            <h4 class="session-detail-speaker">{{session.speakername}} &nbsp;&nbsp; #{{session.demographic}}</h4>
+                            <h4 class="session-detail-speaker">{{session.speakername}} &nbsp;&nbsp; {{session.demographic}}</h4>
                             <i class="icon ion-chevron-right icon-accessory"></i>
                         </div>
                     </div>
                 </div>
-                <div ng-repeat-end></div>
             </div>
         </ion-list>
     </ion-content>
