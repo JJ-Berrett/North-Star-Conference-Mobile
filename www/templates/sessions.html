@@ -13,7 +13,7 @@
                 </div>
                 <div class="card" ng-repeat="mappedSession in mappedSessions | orderBy: 'sessionType'">
                     <div class="item positive">
-                        {{mappedSession.sessionType.toUpperCase()}} ({{mappedSession.sessionTime}})
+                        {{mappedSession.sessionType.toUpperCase()}} | {{mappedSession.sessionTime}}
                     </div>
                     <div class="padding" style="padding-top: 4px">
                         <div class="session-list-item item item-text-wrap item-icon-right" ng-repeat="session in mappedSession.sessions | filter: searchText"
