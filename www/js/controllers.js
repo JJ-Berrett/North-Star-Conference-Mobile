@@ -70,7 +70,6 @@ angular.module('controllers', [])
 
           console.log(mappedSessions)
           $scope.mappedSessions = mappedSessions;
-          console.log(mappedSessions);
           $scope.loading = false;
         })
     }
@@ -296,19 +295,9 @@ angular.module('controllers', [])
     sessionsSrvc.removeNotification(id);
   };
 
-  $scope.clearNotifications = function () {
-    sessionsSrvc.clearNotifications();
-    updateNotifications();
-  };
-
-
   $scope.$on('$ionicView.enter', function (e) {
     updateNotifications();
   });
-
-  // $scope.$on('$ionicView.leave', function (e) {
-  //   updateNotifications();
-  // });
 
   $scope.$on('badgeEvent', function (e) {
     updateNotifications();
