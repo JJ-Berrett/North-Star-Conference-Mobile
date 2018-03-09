@@ -1,0 +1,41 @@
+<ion-view view-title="Provide Feedback">
+  <ion-content>
+    <div class="list card">
+      <div class="padding">
+        <h3 class="positive" style="font-weight: bold">{{session.title}}</h3>
+        <h4 class="grey-text padding-bottom" style="font-weight: bold">{{session.speakername}}</h4>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <input type="text" placeholder="What is your name?" ng-model="session.userName">
+        </label>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <input type="text" placeholder="What is your email?" ng-model="session.userEmail">
+        </label>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <select class="rating-select" style="color: {{session.rating === '0' ? '#aaa' : '#000'}}" ng-model="session.rating">
+            <option style="color: #ddd" value="0" disabled>How would you rate this session?</option>
+            <option value="5">Couldn't have been better!</option>
+            <option value="4">Great</option>
+            <option value="3">Pretty good</option>
+            <option value="2">Alright</option>
+            <option value="1">I wish I hadn't gone</option>
+          </select>
+        </label>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <textarea placeholder="What did you like?" ng-model="session.likeFeedback"></textarea>
+        </label>
+        <label style="padding: 16px" class="item item-input item-stacked-label">
+          <textarea placeholder="What could we have done better?" ng-model="session.dislikeFeedback"></textarea>
+        </label>
+        <label style="padding: 16px; padding-bottom: 0" class="item item-input item-stacked-label">
+          <textarea placeholder="Any other comments?" ng-model="session.generalFeedback"></textarea>
+        </label>
+      </div>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive button-outline" ng-click="submitReview(session)" ui-sref="tab.schedule">Submit
+      </button>
+    </div>
+
+
+  </ion-content>
+</ion-view>

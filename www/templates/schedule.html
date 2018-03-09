@@ -8,11 +8,11 @@
         <div class="positive" style="font-size: 10px;">Share With Friends</div>
       </div>
       <ion-item class="card padding" ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
-        <div class="item-text-wrap icon-right session-list-item schedule-list-item" ui-sref='tab.session-detail({id:session.id})'>
+        <div class="item-text-wrap icon-right session-list-item schedule-list-item">
           <div class="session-tile-info">
-            <h2 class="positive">{{session.title}}</h2>
-            <h3 class="grey-text-italic session-detail-speaker">{{session.speakername}}</h3>
-            <h4 class="session-detail-speaker">{{session.sessiontype.toUpperCase()}} - {{session.room}}</h4>
+            <h2 class="positive" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.title}}</h2>
+            <h3 class="grey-text-italic session-detail-speaker" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.speakername}}</h3>
+            <h4 class="session-detail-speaker" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.sessiontype.toUpperCase()}} - {{session.room}}</h4>
             <h4 class="grey-text-session grey-text-italic">
                {{session.sessiontime}}
             </h4>
@@ -21,10 +21,11 @@
             <button class="trash-button button button-clear" ng-click="removeFromSchedule({id:session.id})">
               <i class="positive icon ion-ios-trash-outline"></i>
             </button>
-            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+            <div class="trash-button button button-clear" ui-sref="tab.schedule-rateSession({id:session.id})">
+              <i class="positive icon ion-ios-mic"></i>
+            </div>
           </div>
         </div>
-        <ion-nav-view name="singleSession-tab"></ion-nav-view>
       </ion-item>
     </ion-list>
   </ion-content>
