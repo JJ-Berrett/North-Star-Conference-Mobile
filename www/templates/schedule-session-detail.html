@@ -1,0 +1,37 @@
+<ion-view view-title="{{session.title}}">
+  <ion-content>
+    <div class="card">
+      <div class="padding">
+        <div class="speaker-photo-wrapper">
+          <img class="speaker-photo" ng-src="{{session.speakerphoto || 'https://i.imgflip.com/1slnr0.jpg'}}" />
+        </div>
+        <div class="detail-container">
+          <div class="left-detail-section">
+            <h3 class="positive ">{{session.title}}</h3>
+            <h4 ui-sref="tab.schedule-speaker-detail({id:session.id})" class="padding-top session-detail-speaker">{{session.speakername}}
+              <i class="icon ion-chevron-right icon-accessory"></i>
+            </h4>
+            <h5 class="grey-text-session">{{session.sessionDay}} {{session.sessiontime}}</h5>
+            <h5 ng-click="openModal()" class=" positive">{{session.room}}
+              <i class="icon ion-chevron-right icon-accessory"></i>
+            </h5>
+            <div class="session-detail-data">{{session.demographic}}</div>
+            <p class="padding-top grey-text">{{session.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="padding">
+        <div class="padding-top detail-button-container ">
+          <div class="text-center">
+            <button class="button button-small button-positive button-outline detail-button" ui-sref="tab.schedule-rateSession({id:session.id})">
+              <i class="icon ion-ios-mic"></i>
+            </button>
+            <div class="detail-button positive">Provide Feedback</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

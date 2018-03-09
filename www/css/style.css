@@ -91,7 +91,7 @@ div.spinner {
 }
 .right-detail-section{
     margin: 0 10px;
-    display: -webkit-flex;    
+    display: -webkit-flex;
     -webkit-justify-content: space-between;
     -webkit-align-items: center;
 }
@@ -190,8 +190,9 @@ div.spinner {
     align-items: center;
 }
 
-.notification p {
-    margin: 8px 0;
+.notification {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 /* Fix modal backdrop for smaller devices */

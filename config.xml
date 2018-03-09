@@ -84,6 +84,7 @@
     </platform>
     <allow-navigation href="http://192.168.1.108:8100" />
     <plugin name="onesignal-cordova-plugin" spec="^2.3.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.4" />
 </widget>

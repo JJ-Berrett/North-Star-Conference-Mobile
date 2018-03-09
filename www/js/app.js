@@ -80,7 +80,33 @@ angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast', 'n
           }
         }
       })
-
+      .state('tab.schedule-speaker-detail', {
+        url: '/speakerDetail/:id',
+        views: {
+          'schedule-tab': {
+            templateUrl: 'templates/schedule-speaker-detail.html',
+            controller: 'SpeakerDetailCtrl'
+          }
+        }
+      })
+      .state('tab.schedule-rateSession', {
+        url: 'rateSession/:id',
+        views: {
+          'schedule-tab': {
+            templateUrl: 'templates/schedule-rate-session.html',
+            controller: 'ratingCtrl'
+          }
+        }
+      })
+      .state('tab.schedule-session-detail', {
+        url: '/sessions/:id',
+        views: {
+          'schedule-tab': {
+            templateUrl: 'templates/schedule-session-detail.html',
+            controller: 'SessionDetailCtrl'
+          }
+        }
+      })
 			.state('tab.schedule', {
 				url: '/schedule',
 				views: {

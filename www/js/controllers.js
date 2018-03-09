@@ -287,26 +287,15 @@ angular.module('controllers', [])
 
   function updateNotifications () {
     let notifications = sessionsSrvc.getNotifications();
-    $scope.badgeCount = notifications.length;
     $scope.notifications = notifications;
+    $scope.badgeCount = notifications.length;
   }
 
-  $scope.close = function (id) {
+  $scope.close = function (id,) {
     sessionsSrvc.removeNotification(id);
   };
 
-  $scope.clearNotifications = function () {
-    sessionsSrvc.clearNotifications();
-    updateNotifications();
-    $scope.badgeCount = 0;
-  };
-
-
   $scope.$on('$ionicView.enter', function (e) {
-    updateNotifications();
-  });
-
-  $scope.$on('$ionicView.leave', function (e) {
     updateNotifications();
   });
 

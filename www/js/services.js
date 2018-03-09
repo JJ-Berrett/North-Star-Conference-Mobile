@@ -13,36 +13,6 @@ angular.module('services', [])
     if (!localStorage.notifications) {
       $localStorage.notifications = [];
     }
-    if (!localStorage.badges) {
-      $localStorage.badge = 0;
-    }
-
-    $localStorage.notifications = [
-      {
-        id: 1,
-        title: 'Test 1',
-        body: 'This is an example message that will be in the notifications object',
-        timestamp: 'Sun Feb 25 2018 19:52:25'
-      },
-      {
-        id: 3,
-        title: 'Test number 3',
-        body: 'This is an example message that will be in the notifications object',
-        timestamp: 'Sun Feb 25 2018 19:30:40'
-      },
-      {
-        id: 2,
-        title: 'Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2 Test 2',
-        body: 'This is an example message that will be in the notifications object',
-        timestamp: 'Sun Feb 25 2018 19:40:30'
-      },
-      {
-        id: 4,
-        title: 'Test number 4',
-        body: 'This is an example message that will be in the notifications object',
-        timestamp: 'Sun Feb 25 2018 19:52:50'
-      }
-    ];
 
     let schedule = $localStorage.schedule;
 
@@ -145,45 +115,22 @@ angular.module('services', [])
 
     this.addNotification = function (data) {
       let notifications = $localStorage.notifications;
-      let badge = $localStorage.badge;
 
       let notification = {
-        id: data.notification.payload.notificationId,
-        title: data.notification.payload.title,
-        body: data.notification.payload.body,
-        timestamp: new Date().now()
+        id: data.payload.notificationID,
+        title: data.payload.title,
+        body: data.payload.body,
+        timestamp: new Date()
       };
 
       notifications.push(notification);
-      $localStorage.notifications = notifications;
-      badge++;
 
-      $localStorage.badge = badge;
+      $localStorage.notifications = notifications;
       $rootScope.$broadcast('badgeEvent');
     };
 
     this.getNotifications = function () {
-      let { notifications } = $localStorage
-      console.log(notifications)
-      for (let i = 0; i < notifications.length; i++) {
-        let { timestamp } = notifications[i]
-        let arr = timestamp.split(/ /)
-        let day = arr[0]
-        let month = (new Date(timestamp)).getMonth() // "feb" does not work..
-        let monthString = arr[1]
-        let date = arr[2]
-        let year = arr[3]
-        let time = arr[4].split(/:/)
-        let hour = time[0]
-        let minute = time[1]
-        let second = time[2]
-        let fullDate = new Date(year, month, date, hour, minute, second)
-        let timeString = fullDate.toDateString().replace(/( \d{4})/, ",") + " " + fullDate.toLocaleTimeString().replace(/:\d{2} /, " ")
-        notifications[i].fullDate = fullDate
-        notifications[i].timeString = timeString
-      }
-      console.log(notifications)
-      return notifications;
+      return $localStorage.notifications;
     };
 
     this.removeNotification = function (id) {
@@ -192,14 +139,10 @@ angular.module('services', [])
         if (notifications[i].id === id) {
           notifications.splice(i, 1);
         }
+        $rootScope.$broadcast('badgeEvent');
       }
       $localStorage.notifications = notifications;
-      return 1;
+      $rootScope.$broadcast('badgeEvent');
     };
-
-    this.clearNotifications = function () {
-      $localStorage.notifications = [];
-      return [];
-    }
 
   });
