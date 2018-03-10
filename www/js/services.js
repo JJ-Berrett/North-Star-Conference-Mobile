@@ -22,20 +22,53 @@ angular.module('services', [])
         for (let i = 0; i < res.data.length; i++) {
           let session = res.data[i];
           let sessionDay;
+          let sessionOrder;
           switch (session.sessiontype) {
-            case "breakout 1":
-            case "breakout 2":
-            case "breakout 3":
+            case "keynote 1":
+              sessionOrder = 0;
               sessionDay = "Friday";
               break;
-            case "breakout 4":
-            case "breakout 5":
-            case "breakout 6":
+            case "breakout 1":
+              sessionOrder = 1;
+              sessionDay = "Friday";
+              break;
+            case "breakout 2":
+              sessionOrder = 2;
+              sessionDay = "Friday";
+              break;
+            case "breakout 3":
+              sessionOrder = 3;
+              sessionDay = "Friday";
+              break;
+            case "keynote 2":
+              sessionOrder = 4;
+              sessionDay = "Friday";
+              break;
+            case "keynote 3":
+              sessionOrder = 5;
               sessionDay = "Saturday";
               break;
-          }
+            case "breakout 4":
+              sessionOrder = 6;
+              sessionDay = "Saturday";
+              break;
+            case "breakout 5":
+              sessionOrder = 7;
+              sessionDay = "Saturday";
+              break;
+            case "breakout 6":
+              sessionOrder = 8;
+              sessionDay = "Saturday";
+              break;
+            case "keynote 4":
+              sessionOrder = 9;
+              sessionDay = "Saturday";
+              break;
+          };
+          session.sessionOrder = sessionOrder
           session.sessionDay = sessionDay
-        }
+        };
+        console.log(res);
         return res;
       });
     };
@@ -45,7 +78,7 @@ angular.module('services', [])
     };
 
     this.setMentors = function (_mentors) {
-      $localStorage.mentors = _mentors
+      $localStorage.mentors = _mentors;
     };
 
     this.getSession = function (id) {
@@ -54,18 +87,48 @@ angular.module('services', [])
       });
       let sessionDay;
       switch (session.sessiontype) {
-        case "breakout 1":
-        case "breakout 2":
-        case "breakout 3":
+        case "keynote 1":
+          sessionOrder = 0;
           sessionDay = "Friday";
           break;
-        case "breakout 4":
-        case "breakout 5":
-        case "breakout 6":
+        case "breakout 1":
+          sessionOrder = 1;
+          sessionDay = "Friday";
+          break;
+        case "breakout 2":
+          sessionOrder = 2;
+          sessionDay = "Friday";
+          break;
+        case "breakout 3":
+          sessionOrder = 3;
+          sessionDay = "Friday";
+          break;
+        case "keynote 2":
+          sessionOrder = 4;
+          sessionDay = "Friday";
+          break;
+        case "keynote 3":
+          sessionOrder = 5;
           sessionDay = "Saturday";
           break;
-      }
-      return Object.assign({}, session, { sessionDay })
+        case "breakout 4":
+          sessionOrder = 6;
+          sessionDay = "Saturday";
+          break;
+        case "breakout 5":
+          sessionOrder = 7;
+          sessionDay = "Saturday";
+          break;
+        case "breakout 6":
+          sessionOrder = 8;
+          sessionDay = "Saturday";
+          break;
+        case "keynote 4":
+          sessionOrder = 9;
+          sessionDay = "Saturday";
+          break;
+      };
+      return Object.assign({}, session, { sessionDay, sessionOrder });
     };
 
     this.addToSchedule = function (id) {

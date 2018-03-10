@@ -11,7 +11,7 @@
             <h4 ui-sref="tab.speaker-detail({id:session.id})" class="padding-top session-detail-speaker">{{session.speakername}}
               <i class="icon ion-chevron-right icon-accessory"></i>
             </h4>
-            <h5 class="grey-text-session">{{session.sessionDay}} {{session.sessiontime}}</h5>
+            <h5 class="grey-text-session">{{session.sessionDay}} {{session.sessiontime.replace("SATURDAY ", "").replace("FRIDAY ", "")}}</h5>
             <h5 ng-click="openModal()" class=" positive">{{session.room}}
               <i class="icon ion-chevron-right icon-accessory"></i>
             </h5>
