@@ -12,9 +12,9 @@
           <div class="session-tile-info">
             <h2 class="positive" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.title}}</h2>
             <h3 class="grey-text-italic session-detail-speaker" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.speakername}}</h3>
-            <h4 class="session-detail-speaker" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.sessiontype.toUpperCase()}} - {{session.room}}</h4>
+            <h4 class="session-detail-speaker" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.sessionDay.toUpperCase()}} - {{session.sessiontime}}</h4>
             <h4 class="grey-text-session grey-text-italic">
-               {{session.sessiontime}}
+               {{session.room}}
             </h4>
           </div>
           <div class="schedule-button-container">

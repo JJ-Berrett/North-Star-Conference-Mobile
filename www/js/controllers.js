@@ -14,6 +14,7 @@ angular.module('controllers', [])
       sessionsSrvc.getSessions()
         .then((res) => {
           sessions = res.data;
+          console.log(sessions)
           sessionsSrvc.setSessions(sessions);
           return sessions;
         })
@@ -31,6 +32,7 @@ angular.module('controllers', [])
               mappedSessions.push({
                 sessionType: session.sessiontype,
                 sessionTime: session.sessiontime,
+                sessionDay: session.sessionDay,
                 sessions: []
               })
             }
@@ -43,30 +45,8 @@ angular.module('controllers', [])
             });
             if (mappedSession) {
               mappedSession.sessions.push(session);
-            }
+            };
           });
-
-          //Add the day to each session
-          mappedSessions = mappedSessions.map(function (sessionList) {
-            let sessionDay = ""
-            switch (sessionList.sessionType) {
-              case "breakout 1":
-              case "breakout 2":
-              case "breakout 3":
-                sessionDay = "Friday"
-                break;
-              case "breakout 4":
-              case "breakout 5":
-              case "breakout 6":
-                sessionDay = "Saturday"
-                break;
-            }
-            sessionList.sessions = sessionList.sessions.map(function (session) {
-              session.sessionDay = sessionDay
-              return session
-            })
-            return sessionList
-          })
 
           console.log(mappedSessions)
           $scope.mappedSessions = mappedSessions;
