@@ -65,8 +65,8 @@ angular.module('services', [])
               sessionDay = "Saturday";
               break;
           };
-          session.sessionOrder = sessionOrder
-          session.sessionDay = sessionDay
+          session.sessionOrder = sessionOrder;
+          session.sessionDay = sessionDay;
         };
         console.log(res);
         return res;
@@ -75,6 +75,15 @@ angular.module('services', [])
 
     this.setSessions = function (_sessions) {
       $localStorage.sessions = _sessions;
+      let schedule = $localStorage.schedule;
+      if (schedule.length < 4) {
+        for (let i = 0; i < _sessions.length; i++) {
+          if (_sessions[i].sessiontype.replace('keynote ', '').length < 2) {
+            schedule.push(_sessions[i]);
+          };
+        };
+        $localStorage.schedule = schedule;
+      };
     };
 
     this.setMentors = function (_mentors) {

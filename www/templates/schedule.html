@@ -7,7 +7,7 @@
         </button>
         <div class="positive" style="font-size: 10px;">Share With Friends</div>
       </div>
-      <ion-item class="card padding" ng-repeat="session in scheduledSessions | orderBy: 'sessiontype'">
+      <ion-item class="card padding" ng-repeat="session in scheduledSessions | orderBy: 'sessionOrder'">
         <div class="item-text-wrap icon-right session-list-item schedule-list-item">
           <div class="session-tile-info">
             <h2 class="positive" ui-sref='tab.schedule-session-detail({id:session.id})'>{{session.title}}</h2>
@@ -17,10 +17,11 @@
                {{session.room}}
             </h4>
           </div>
-          <div class="schedule-button-container">
-            <button class="trash-button button button-clear" ng-click="removeFromSchedule({id:session.id})">
+          <div class="schedule-button-container" style="display: flex; flex-direction: column; justify-content: space-around" >
+            <button ng-if="session.sessiontype.replace('keynote ', '').length > 2" class="trash-button button button-clear" ng-click="removeFromSchedule({id:session.id})">
               <i class="positive icon ion-ios-trash-outline"></i>
             </button>
+            <!-- <div class="trash-button button button-clear" ng-if="session.sessiontype.replace('keynote ', '').length <= 2" ></div> -->
             <div class="trash-button button button-clear" ui-sref="tab.schedule-rateSession({id:session.id})">
               <i class="positive icon ion-ios-mic"></i>
             </div>

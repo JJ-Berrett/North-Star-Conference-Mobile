@@ -84,6 +84,7 @@ angular.module('controllers', [])
   })
 
   .controller('scheduleCtrl', function ($scope, sessionsSrvc, ionicToast) {
+
     $scope.sendSms = function () {
       let message = 'My Schedule \n \n';
       schedule = sessionsSrvc.getSchedule();
@@ -103,12 +104,19 @@ angular.module('controllers', [])
       }
       else {
         ionicToast.show('Nothing in your schedule, please add before sharing', 'middle', false, 2500);
-      }
+      };
     };
-
 
     function getSchedule() {
       let scheduledSessions = sessionsSrvc.getSchedule();
+
+      if (scheduledSessions.length < 4) {
+        sessionsSrvc.getSessions().then(res => {
+          let sessions = res.data;
+          sessionsSrvc.setSessions(sessions);
+        });
+      }
+
       if (scheduledSessions) {
         $scope.scheduledSessions = scheduledSessions;
         $scope.noSchedule = false;
