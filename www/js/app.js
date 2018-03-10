@@ -1,5 +1,5 @@
 "use strict";
-angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast', 'ngStorage'])
+angular.module('starter', ['ionic', 'controllers', 'services', 'ionic-toast', 'ngStorage', 'ngCordova'])
 	.run(function ($ionicPlatform, sessionsSrvc) {
 		$ionicPlatform.ready(function () {
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {

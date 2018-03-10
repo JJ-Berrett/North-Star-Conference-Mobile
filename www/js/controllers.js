@@ -152,7 +152,7 @@ angular.module('controllers', [])
     };
   })
 
-  .controller('otherCtrl', function ($scope, $ionicModal) {
+  .controller('otherCtrl', function ($scope, $ionicModal, $cordovaSms) {
     $ionicModal.fromTemplateUrl('templates/map.html', {
       scope: $scope
     }).then(function (modal) {
@@ -162,7 +162,20 @@ angular.module('controllers', [])
     $scope.openModal = function () {
       $scope.modal.show();
       $scope.imgUrl = "img/map.png"
-    }
+    };
+
+    $scope.sendSms = function () {
+      let message = 'Hi, my name is: (put your name here), and I have a question about...';
+      let options = {
+        replaceLineBreaks: false, // true to replace \n by a new line, false by default
+        android: {
+          intent: 'INTENT'  // send SMS with the native android SMS messaging
+          //intent: '' // send SMS without open any other app
+        }
+      };
+      let number = '14356122474';
+      sms.send(number, message, options);
+    };
   })
 
   .controller('QuestionCtrl', function ($scope, sessionsSrvc, $stateParams, ionicToast, $state) {
