@@ -17,7 +17,28 @@ angular.module('services', [])
     let schedule = $localStorage.schedule;
 
     this.getSessions = function () {
-      return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions')
+      return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions').then(res => {
+
+        for (let i = 0; i < res.data.length; i++) {
+          let session = res.data[i];
+          let sessionDay;
+          switch (session.sessiontype) {
+            case "breakout 1":
+            case "breakout 2":
+            case "breakout 3":
+              sessionDay = "Friday";
+              break;
+            case "breakout 4":
+            case "breakout 5":
+            case "breakout 6":
+              sessionDay = "Saturday";
+              break;
+          };
+          session.sessionDay = sessionDay
+        };
+        console.log(res)
+        return res;
+      });
     };
 
     this.setSessions = function (_sessions) {
@@ -29,9 +50,25 @@ angular.module('services', [])
     };
 
     this.getSession = function (id) {
-      return $localStorage.sessions.find(function (session) {
+      let session = $localStorage.sessions.find(function (session) {
         return session.id === parseInt(id);
-      })
+      });
+      let sessionDay;
+      switch (session.sessiontype) {
+        case "breakout 1":
+        case "breakout 2":
+        case "breakout 3":
+          sessionDay = "Friday";
+          break;
+        case "breakout 4":
+        case "breakout 5":
+        case "breakout 6":
+          sessionDay = "Saturday";
+          break;
+      };
+      console.log(session)
+      console.log(sessionDay)
+      return Object.assign({}, session, { sessionDay })
     };
 
     this.addToSchedule = function (id) {
