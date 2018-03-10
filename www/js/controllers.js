@@ -14,7 +14,6 @@ angular.module('controllers', [])
       sessionsSrvc.getSessions()
         .then((res) => {
           sessions = res.data;
-          console.log(sessions)
           sessionsSrvc.setSessions(sessions);
           return sessions;
         })
@@ -48,7 +47,6 @@ angular.module('controllers', [])
             };
           });
 
-          console.log(mappedSessions)
           $scope.mappedSessions = mappedSessions;
           $scope.loading = false;
         })
@@ -240,7 +238,6 @@ angular.module('controllers', [])
   })
 
   .controller('MentorDetailCtrl', function ($scope, sessionsSrvc, $stateParams, ionicToast, $state) {
-    console.log($stateParams.id);
     $scope.mentor = sessionsSrvc.getMentor($stateParams.id);
     if($scope.mentor.photo === "" || $scope.mentor.photo === "TBD"){
       $scope.mentor.photo = "http://conference.northstarlds.org/wp-content/uploads/2017/01/Blank.jpg"
@@ -261,7 +258,6 @@ angular.module('controllers', [])
   })
 
   .controller('SpeakerDetailCtrl', function ($scope, sessionsSrvc, $stateParams) {
-  console.log($stateParams.id);
   $scope.speaker = sessionsSrvc.getSession($stateParams.id);
 
   if($scope.speaker.speakerphoto === "" || $scope.speaker.speakerphoto === "TBD"){

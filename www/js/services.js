@@ -33,10 +33,9 @@ angular.module('services', [])
             case "breakout 6":
               sessionDay = "Saturday";
               break;
-          };
+          }
           session.sessionDay = sessionDay
-        };
-        console.log(res)
+        }
         return res;
       });
     };
@@ -65,9 +64,7 @@ angular.module('services', [])
         case "breakout 6":
           sessionDay = "Saturday";
           break;
-      };
-      console.log(session)
-      console.log(sessionDay)
+      }
       return Object.assign({}, session, { sessionDay })
     };
 
