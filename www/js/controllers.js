@@ -47,7 +47,6 @@ angular.module('controllers', [])
               mappedSession.sessions.push(session);
             };
           });
-          console.log(mappedSessions);
           $scope.mappedSessions = mappedSessions;
           $scope.loading = false;
         })

@@ -11,10 +11,10 @@ angular.module('services', [])
       $localStorage.notifications = [];
     }
 
-    
+
     this.getSessions = function () {
       return $http.get('https://northstarconferenceadmin.herokuapp.com/api/sessions').then(res => {
-        
+
         for (let i = 0; i < res.data.length; i++) {
           let session = res.data[i];
           let sessionDay;
@@ -60,21 +60,20 @@ angular.module('services', [])
             sessionOrder = 9;
             sessionDay = "Saturday";
             break;
-          };
+          }
           session.sessionOrder = sessionOrder;
           session.sessionDay = sessionDay;
-        };
-        console.log(res);
+        }
         return res;
       });
     };
-    
+
     if (!$localStorage.schedule) {
       $localStorage.schedule = [];
       this.getSessions().then(res => {
         let sessions = res.data;
         this.setSessions(sessions);
-        
+
         for (let i = 0; i < sessions.length; i++) {
           if (sessions[i].sessiontype.replace('keynote ', '').length < 2) {
             this.addToSchedule(sessions[i].id)
@@ -84,7 +83,7 @@ angular.module('services', [])
     }
 
     let schedule = $localStorage.schedule;
-    
+
     this.setSessions = function (_sessions) {
       $localStorage.sessions = _sessions;
     };
