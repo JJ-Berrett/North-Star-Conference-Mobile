@@ -110,13 +110,6 @@ angular.module('controllers', [])
     function getSchedule() {
       let scheduledSessions = sessionsSrvc.getSchedule();
 
-      if (scheduledSessions.length < 4) {
-        sessionsSrvc.getSessions().then(res => {
-          let sessions = res.data;
-          sessionsSrvc.setSessions(sessions);
-        });
-      }
-
       if (scheduledSessions) {
         $scope.scheduledSessions = scheduledSessions;
         $scope.noSchedule = false;
