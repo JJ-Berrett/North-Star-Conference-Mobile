@@ -32,9 +32,10 @@ angular.module('controllers', [])
                 sessionType: session.sessiontype,
                 sessionTime: session.sessiontime,
                 sessionDay: session.sessionDay,
+                sessionOrder: session.sessionOrder,
                 sessions: []
-              })
-            }
+              });
+            };
           });
 
           //Add sessions to the session object in the mapped session.
@@ -46,7 +47,6 @@ angular.module('controllers', [])
               mappedSession.sessions.push(session);
             };
           });
-
           $scope.mappedSessions = mappedSessions;
           $scope.loading = false;
         })
@@ -83,6 +83,7 @@ angular.module('controllers', [])
   })
 
   .controller('scheduleCtrl', function ($scope, sessionsSrvc, ionicToast) {
+
     $scope.sendSms = function () {
       let message = 'My Schedule \n \n';
       schedule = sessionsSrvc.getSchedule();
@@ -102,12 +103,12 @@ angular.module('controllers', [])
       }
       else {
         ionicToast.show('Nothing in your schedule, please add before sharing', 'middle', false, 2500);
-      }
+      };
     };
-
 
     function getSchedule() {
       let scheduledSessions = sessionsSrvc.getSchedule();
+
       if (scheduledSessions) {
         $scope.scheduledSessions = scheduledSessions;
         $scope.noSchedule = false;
