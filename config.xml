@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.northstarlds.northstarconf" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.northstarlds.northstarconf" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>NorthStarConf</name>
     <description>North Star International Conference app</description>
     <author email="developer@jjberrett.com" href="https://jjberrett.com">JJ Berrett LLC</author>

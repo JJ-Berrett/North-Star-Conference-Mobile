@@ -1,21 +1,21 @@
 <ion-view view-title="Notifications">
   <ion-content class="has-header" delegate-handle="stickyScroll">
       <ion-list type="list">
-        <ion-item class="card notification">
-          <div style="margin-right: -33px">
+        <ion-item class="card padding notification">
+          <div style="margin-right: -33px; padding-right: 24px">
             <div class="notification-header">
-              <h2 class="positive" style="white-space: initial font-weight: bold;">Hi</h2>
+              <h2 class="positive" style="white-space: initial font-weight: bold;">Welcome to the Notifications Page</h2>
               <h3 class="grey-text" style="white-space: initial;">
               </h3>
             </div>
-            <p style="white-space: initial; font-weight: bold ">This page will contain all of the notifications you have received</p>
+            <p style="white-space: initial; font-weight: bold;">This page will contain your notifications</p>
             <p style="white-space: initial;">Pro tip: You can clear notifications by swiping left</p>
           </div>
         </ion-item>
       </ion-list>
 
     <ion-list type="list">
-        <ion-item class="card notification" ng-repeat="notification in notifications | orderBy: '-timestamp'">
+        <ion-item class="card padding notification" ng-repeat="notification in notifications | orderBy: '-timestamp'">
           <div style="margin-right: -33px">
             <div class="notification-header">
               <h2 class="positive" style="white-space: initial;">{{notification.title}}</h2>
