@@ -164,7 +164,7 @@ angular.module('controllers', [])
     };
 
     $scope.sendSms = function () {
-      let message = 'Hi, my name is: (put your name here), and I have a question about...';
+      let message = 'Hi, my name is:';
       let options = {
         replaceLineBreaks: false, // true to replace \n by a new line, false by default
         android: {

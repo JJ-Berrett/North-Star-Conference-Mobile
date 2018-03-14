@@ -7,4 +7,5 @@ NorthStarConf.apk
 north-star-conf.keystore
 push-notification-certs/
 *.idea/
-
+north-star-conf-unsigned.apk
+north-star-conf.apk
